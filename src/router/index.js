@@ -10,7 +10,7 @@ import { proposalList, proposalDetail } from './map/proposal.js'
 import { tokensList, tokensDetail } from './map/tokens.js'
 import DownLoad from './map/download'
 import Redirect from './map/Redirect'
-import { governableParameter, foundationAddress, addToExtension } from './map/more'
+import { governableParameter, foundationAddress, addToExtension, createValidateNode, removeValidateNode } from './map/more'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -34,6 +34,8 @@ export default new Router({
     governableParameter,
     foundationAddress,
     addToExtension,
+    createValidateNode,
+    removeValidateNode,
     tokensList,
     ...tokensDetail,
     ...Redirect // 路由重定向(访问不存在的页面时，重定向到这个页面) 放最后面

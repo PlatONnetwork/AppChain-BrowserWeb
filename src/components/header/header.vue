@@ -128,8 +128,8 @@
             <span
               class="el-dropdown-link more-title"
               :class="{
-                active: 
-                  ['/proposal', '/governable-parameter', '/foundation-address', '/add-to-extension'].includes($route.path)
+                active:
+                  ['/proposal', '/governable-parameter', '/foundation-address', '/add-to-extension', '/create-validate-node', '/remove-validate-node'].includes($route.path)
               }"
               >{{ $t('menu.more') }}
               <i
@@ -153,6 +153,12 @@
               <el-dropdown-item command="/add-to-extension">{{
                 $t('more.addToExtension')
               }}</el-dropdown-item>
+              <el-dropdown-item command="/create-validate-node">{{
+                  $t('more.createValidateNode')
+                }}</el-dropdown-item>
+              <el-dropdown-item command="/remove-validate-node">{{
+                  $t('more.removeValidateNode')
+                }}</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
         </el-menu-item>
@@ -365,7 +371,7 @@
               >
                 <router-link to="/tokens/tokensList/prc1155">{{ $t('menu.erc1155Tokens') }}</router-link>
               </el-menu-item>
-              
+
               <el-menu-item
                 index="/tokens/tokensTranfer/prc1155"
                 @click="toggleMobileMenuOpenend"
@@ -417,6 +423,24 @@
                 <router-link to="/add-to-extension">{{
                   $t('more.addToExtension')
                 }}</router-link>
+              </el-menu-item>
+              <el-menu-item
+                @click="toggleMobileMenuOpenend"
+                index="/create-validate-node"
+                :class="{ active: $route.path == '/create-validate-node' }"
+              >
+                <router-link to="/create-validate-node">{{
+                    $t('more.createValidateNode')
+                  }}</router-link>
+              </el-menu-item>
+              <el-menu-item
+                @click="toggleMobileMenuOpenend"
+                index="/remove-validate-node"
+                :class="{ active: $route.path == '/remove-validate-node' }"
+              >
+                <router-link to="/remove-validate-node">{{
+                    $t('more.removeValidateNode')
+                  }}</router-link>
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
