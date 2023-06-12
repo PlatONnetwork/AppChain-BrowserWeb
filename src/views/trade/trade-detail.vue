@@ -165,6 +165,8 @@
           detailInfo.txType == '7' ||
           detailInfo.txType == '8' ||
           detailInfo.txType == '9' ||
+          detailInfo.txType == '10' || // 1155创建
+          detailInfo.txType == '11' || // 1155调用
           detailInfo.txType == '21'
         "
       >
@@ -174,7 +176,8 @@
           v-if="
             detailInfo.txType == '1' ||
             detailInfo.txType == '6' ||
-            detailInfo.txType == '8'
+            detailInfo.txType == '8' ||
+            detailInfo.txType == '10' // 1155 创建
           "
         >
           <router-link
@@ -254,6 +257,34 @@
         <!-- 交易手续费 -->
         <Item :label="$t('tradeAbout.transactionFee')">
           <span>{{ detailInfo.actualTxCost | formatMoney }} LAT</span>
+        </Item>
+        <Item
+          :label="$t('tradeAbout.innerTransfer')"
+          v-if="detailInfo.internalTransferParams && detailInfo.internalTransferParams.length > 0"
+        >
+          <ul>
+            <li
+              class="tokens-item"
+              v-for="(item, index) in detailInfo.internalTransferParams"
+              :key="index"
+            >
+              From
+              <!-- 跳转参数都是innerContractAddr -->
+              <router-link
+                class="cursor blue ellipsis token-width"
+                :to="getAddressUrl(item.from, item.fromType)"
+              >{{ item.from }}</router-link
+              >
+              to
+              <router-link
+                class="cursor blue ellipsis token-width"
+                :to="getAddressUrl(item.to, item.toType)"
+              >{{ item.to }}</router-link
+              >
+              for
+              <span class="money">{{ item.value | fromWei(18) | formatMoney }} LAT</span>
+            </li>
+          </ul>
         </Item>
         <!-- erc20 tokens -->
         <Item
@@ -343,6 +374,59 @@
             </ul>
         </div>
         </Item>
+         <!-- erc1155 tokens -->
+        <Item
+          :label="$t('tradeAbout.tokens')"
+          v-if="detailInfo.erc1155Params && detailInfo.erc1155Params.length > 0"
+        >
+          <div class="table-721">
+            <ul class="theader">
+              <li>from</li>
+              <li>to</li>
+              <li>token</li>
+              <li>value</li>
+              <li>icon</li>
+            </ul>
+            <ul
+              v-for="(item, index) in detailInfo.erc1155Params"
+              :key="index"
+            >
+              <li>
+                <router-link
+                  class="cursor blue ellipsis token-width"
+                  :to="getAddressUrl(item.from, item.fromType)"
+                  >{{ item.from }}
+                </router-link>
+              </li>
+              <li>
+                <router-link
+                  class="cursor blue ellipsis token-width"
+                  :to="getAddressUrl(item.to, item.toType)"
+                  >{{ item.to }}
+                </router-link>
+              </li>
+              <li>
+                <router-link
+                  class="cursor blue ellipsis token-width"
+                  :to="get1155IdUrl(item.contract, item.tokenId)"
+                  >
+                  {{ item.tokenId }}  &nbsp; {{ item | tokenName }}
+                </router-link>
+              </li>
+              <li>{{item.value}}</li>
+              <li>
+                <img
+                  v-pic-preview
+                  class="token-pic"
+                  :src="
+                    item.image ||
+                    require('@/assets/images/Platon-cat-721.svg')
+                  "
+                />
+              </li>
+            </ul>
+        </div>
+        </Item>
       </List>
 
       <!-- 委托交易-->
@@ -409,6 +493,31 @@
           :label="$t('tradeAbout.rewardAmount')"
         >
           <span>{{ detailInfo.txAmount | formatMoney }} LAT</span>
+        </Item>
+        <!-- 交易手续费 -->
+        <Item :label="$t('tradeAbout.transactionFee')">
+          <!-- :prop="detailInfo.actualTxCost + 'LAT'" -->
+          <span>{{ detailInfo.actualTxCost | formatMoney }} LAT</span>
+        </Item>
+      </List>
+
+      <!-- 提取委托-->
+      <List
+        :title="detailTitle(detailInfo.txType)"
+        :border="true"
+        v-if="detailInfo.txType == '1006'"
+      >
+        <!-- 委托人 -->
+        <Item :label="$t('tradeAbout.delegator')">
+          <router-link
+            class="cursor normal ellipsis"
+            :to="getAddressUrl(detailInfo.from)"
+            >{{ detailInfo.from }}</router-link
+          >
+        </Item>
+        <!-- 提取数量 -->
+        <Item :label="$t('tradeAbout.extractDelegateAmount')">
+          <span>{{ detailInfo.redeemDelegationValue | formatMoney }} LAT</span>
         </Item>
         <!-- 交易手续费 -->
         <Item :label="$t('tradeAbout.transactionFee')">
@@ -623,19 +732,17 @@
           <span
             v-if="detailInfo.proposalOption == 2"
             class="green vote-status Gilroy-Bold"
-            >SUPPORT</span
+            >YEAS</span
           >
           <span
             class="green vote-status Gilroy-Bold"
             v-else-if="detailInfo.voteStatus"
             >{{
               detailInfo.voteStatus == 1
-                ? 'YES'
+                ? 'YEAS'
                 : detailInfo.voteStatus == 2
-                ? 'NO'
-                : detailInfo.voteStatus == 3
-                ? 'ABSTAIN'
-                : ''
+                ? 'NAYS'
+                : 'ABSTENTIONS'
             }}</span
           >
         </Item>
@@ -1069,12 +1176,15 @@ export default {
         2: 'execution',
         7: 'execution',
         9: 'execution',
+        10: 'creation',
+        11: 'execution',
         21: 'execution',
         4: 'other',
         5: 'other',
         4000: 'restricting',
         1004: 'delegate',
         1005: 'undelegate',
+        1006: 'extractDelegate',
         2000: 'proposal',
         2001: 'proposal',
         2002: 'proposal',
@@ -1091,7 +1201,7 @@ export default {
       return this.$t('tradeAbout.' + typeMap[t]);
     },
     contractTypeTitle(type) {
-      let typeMap = ['PPOS', 'EVM', 'WASM', '', 'ERC20', 'ERC721'];
+      let typeMap = ['PPOS', 'EVM', 'WASM', '', 'ERC20', 'ERC721', 'ERC1155'];
       return this.$t('tradeAbout.' + typeMap[type]);
     },
   },
@@ -1177,13 +1287,13 @@ export default {
   padding-left: 60px;
   flex-wrap: wrap;
   position: relative;
-  
+
  & > ul {
    display: flex;
    flex-direction: column;
    flex-shrink: 0;
    padding-right: 1em;
-   
+
    &.theader {
     width: 60px;
     font-family: Gilroy-Medium;

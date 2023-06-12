@@ -19,7 +19,7 @@
         active-text-color="#FFF"
       >
         <el-menu-item index="/" :class="{ active: $route.path == '/' }">
-          <router-link to="/">{{ $t('menu.home') }}</router-link>
+          <span>{{ $t('menu.home') }}</span>
         </el-menu-item>
         <el-menu-item
           index="/node"
@@ -27,7 +27,7 @@
             active: $route.path.indexOf('node') > -1,
           }"
         >
-          <router-link to="/node">{{ $t('menu.validator') }}</router-link>
+          <span>{{ $t('menu.validator') }}</span>
         </el-menu-item>
 
         <el-menu-item class="more-item">
@@ -100,6 +100,13 @@
               }}</el-dropdown-item>
               <el-dropdown-item command="/tokens/tokensTranfer/prc721">{{
                 $t('menu.erc721Transfer')
+              }}</el-dropdown-item>
+                    <div class="dividing-line"></div>
+              <el-dropdown-item command="/tokens/tokensList/prc1155">{{
+                $t('menu.erc1155Tokens')
+              }}</el-dropdown-item>
+              <el-dropdown-item command="/tokens/tokensTranfer/prc1155">{{
+                $t('menu.erc1155Transfer')
               }}</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
@@ -349,6 +356,24 @@
                 <router-link to="/tokens/tokensTranfer/prc721">{{
                   $t('menu.erc721Transfer')
                 }}</router-link>
+
+              </el-menu-item>
+              <el-menu-item
+                index="/tokens/tokensList/prc1155"
+                @click="toggleMobileMenuOpenend"
+                :class="{ active: $route.path == '/tokens/tokensList/prc1155' }"
+              >
+                <router-link to="/tokens/tokensList/prc1155">{{ $t('menu.erc1155Tokens') }}</router-link>
+              </el-menu-item>
+              
+              <el-menu-item
+                index="/tokens/tokensTranfer/prc1155"
+                @click="toggleMobileMenuOpenend"
+                :class="{
+                  active: $route.path == '/tokens/tokensTranfer/prc1155'
+                }"
+              >
+                <router-link to="/tokens/tokensTranfer/prc1155">{{ $t('menu.erc1155Transfer') }}</router-link>
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -598,6 +623,9 @@ export default {
         return
       }
       let isHEX = false;
+      if (/^(0x)[\da-f]{40}|$|^(atp|lat)[\da-f]{39}$/i.test(param)) {
+        param = param.toLowerCase()
+      }
       if (isAddress(param)) {
         isHEX = param;
         param = toBech32Address(process.env.VUE_APP_ADR_PREV, param);

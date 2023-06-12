@@ -1,49 +1,45 @@
 <template>
   <div class="contract-detail-wrap">
     <div class="content-top-white contract-detail-top content-padding">
-      <div class="page-title fontSize34">
+      <div class="page-title fontSize34" style="margin-bottom: 22px">
         {{ $t('tokens.tokenDetail') }}
       </div>
 
-      <div class="detail-change">
+      <!-- <div class="detail-change">
         <div class="detail-copy">
-          <span>{{ $t('menu.tokens') }} </span>
-          <i>{{ `${detailInfo.name} (${detailInfo.symbol})` | sliceStr(50) }}</i>
+          <span>{{ $t('menu.tokens') }}</span>
+          <i>{{  detailInfo | tokenName | sliceStr(21) }}</i>
         </div>
-      </div>
+      </div> -->
       <el-row class="overview-wrap" type="flex" justify="space-between">
         <el-col :span="11">
           <!-- 概览 -->
           <div class="overview">
             <h3 class="Gilroy-Medium">
               {{ $t('contract.overview') }}
-              <span class="token-type-name">{{ $t('tokens.erc721') }}</span>
+              <span class="token-type-name">{{ $t('tokens.erc1155') }}</span>
             </h3>
             <ul>
-              <li>
+              <!-- <li>
                 <label class="Gilroy-Medium">
-                  {{ $t('tokens.totalSupply_721') }}&nbsp;
-                  <el-tooltip placement="bottom" class="item" effect="dark" :content="$t('tips.totalSupply_721')">
+                  {{ $t('tokens.totalSupply_1155') }}&nbsp;
+                  <el-tooltip placement="bottom" class="item" effect="dark" :content="$t('tips.totalSupply_1155')">
                     <i class="address-icon"></i>
                   </el-tooltip>
                 </label>
                 <div class="money">{{ detailInfo.totalSupply }}</div>
-              </li>
+              </li> -->
               <li>
                 <label class="Gilroy-Medium">{{ $t('tokens.holder') }}</label>
                 <div class="money">{{ detailInfo.holder }}</div>
               </li>
               <li>
-                <label class="Gilroy-Medium">{{
-                  $t('tokens.transfers_721')
-                }}</label>
+                <label class="Gilroy-Medium">{{ $t('tokens.transfers_1155') }}</label>
                 <div class="money">{{ detailInfo.txCount }}</div>
               </li>
               <!-- 状态 todo -->
               <li>
-                <label class="Gilroy-Medium">{{
-                  $t('contract.status.name')
-                }}</label>
+                <label class="Gilroy-Medium">{{ $t('contract.status.name') }}</label>
                 <div v-if="detailInfo.isContractDestroy" class="red">{{ $t('contract.status.destructed') }}</div>
                 <div v-else>{{ $t('contract.status.normal') }}</div>
               </li>
@@ -59,10 +55,7 @@
               <li>
                 <label class="Gilroy-Medium">{{ $t('tokens.contract') }}</label>
                 <div class="money contract-create-info">
-                  <router-link
-                    class="normal"
-                    :to="getContractUrl(detailInfo.address)"
-                  >
+                  <router-link class="normal" :to="getContractUrl(detailInfo.address)">
                     <!-- {{ detailInfo.address | sliceStr(16) }} -->
                     {{ detailInfo.address }}
                   </router-link>
@@ -75,17 +68,12 @@
                       v-clipboard:error="onError"
                     >
                       <p v-show="isCopy">
-                        <i class="el-icon-circle-check-outline"></i
-                        ><span>{{ copyText }}</span>
+                        <i class="el-icon-circle-check-outline"></i>
+                        <span>{{ copyText }}</span>
                       </p>
                     </b>
                     <a class="code cursor">
-                      <qriously
-                        class="qr-code"
-                        v-if="address"
-                        :value="address"
-                        :size="140"
-                      />
+                      <qriously class="qr-code" v-if="address" :value="address" :size="140" />
                     </a>
                   </div>
                 </div>
@@ -93,9 +81,7 @@
               <li>
                 <label class="Gilroy-Medium">{{ $t('tokens.website') }}</label>
                 <div class="money contract-create-info">
-                  <a class="normal" :href="detailInfo.webSite">{{
-                    detailInfo.webSite || 'N/A'
-                  }}</a>
+                  <a class="normal" :href="detailInfo.webSite">{{ detailInfo.webSite || 'N/A' }}</a>
                 </div>
               </li>
             </ul>
@@ -106,115 +92,111 @@
 
     <div class="address-trade gray-content content-padding">
       <div class="tabs">
-        <el-button
-          size="medium"
-          :class="{ active: activeTab == 1 }"
-          @click="tabChange(1)"
-          >{{ $t('contract.transactions') }}</el-button
-        >
-        <el-button
-          size="medium"
-          :class="{ active: activeTab == 2 }"
-          @click="tabChange(2)"
-          >{{ $t('tokens.holder') }}</el-button
-        >
-        <el-button
-          size="medium"
-          :class="{ active: activeTab == 3 }"
-          @click="tabChange(3)"
-          >{{ $t('tokens.inventory') }}</el-button
-        >
+        <el-button size="medium" :class="{ active: activeTab == 1 }" @click="tabChange(1)">
+          {{ $t('contract.transactions') }}
+        </el-button>
+        <el-button size="medium" :class="{ active: activeTab == 2 }" @click="tabChange(2)">
+          {{ $t('tokens.holder') }}
+        </el-button>
+        <el-button size="medium" :class="{ active: activeTab == 3 }" @click="tabChange(3)">
+          {{ $t('tokens.inventory') }}
+        </el-button>
       </div>
       <tokens-trade-list
         v-show="activeTab == 1"
         :address="address"
         :tradeCount="detailInfo"
-        table-type="erc721"
+        table-type="erc1155"
       ></tokens-trade-list>
-      <tokens-holder :address="address" v-show="activeTab == 2" table-type="erc721"></tokens-holder>
-      <tokens-inventory
-        v-show="activeTab == 3"
-        :address="address"
-      ></tokens-inventory>
+      <tokens-holder :address="address" v-show="activeTab == 2" table-type="erc1155"></tokens-holder>
+      <tokens-inventory v-show="activeTab == 3" :address="address"></tokens-inventory>
     </div>
   </div>
 </template>
 <script>
-import apiService from '@/services/API-services';
+import apiService from '@/services/API-services'
 
-import tokensTradeList from '@/components/tokens/tokens-trade';
-import tokensHolder from '@/components/tokens/tokens-holder';
-import tokensInventory from '@/components/tokens/tokens-inventory';
+import tokensTradeList from '@/components/tokens/tokens-trade'
+import tokensHolder from '@/components/tokens/tokens-holder'
+import tokensInventory from '@/components/tokens/tokens1155-inventory'
 export default {
-  name: 'tokens721DetailComponent',
+  name: 'tokens1155DetailComponent',
   data() {
     return {
       activeTab: 1,
-      // address: '',
+      address: '',
       detailInfo: {},
       isCopy: false,
-      copyText: '',
-    };
+      copyText: ''
+    }
   },
-  props: ['tokensDetail', 'address'],
+  props: ['tokensDetail'],
   computed: {},
   watch: {},
   components: {
     tokensTradeList,
     tokensHolder,
-    tokensInventory,
+    tokensInventory
   },
   methods: {
     //获取地址信息详情
     getDetail() {
       let param = {
-        address: this.address,
-      };
+        address: this.address
+      }
       apiService.tokens
         .tokenDetail(param)
-        .then((res) => {
-          let { errMsg, code, data } = res;
+        .then(res => {
+          let { errMsg, code, data } = res
           if (code == 0) {
-            this.detailInfo = data;
+            this.detailInfo = data
           } else {
-            this.$message.error(errMsg);
+            this.$message.error(errMsg)
           }
         })
-        .catch((error) => {
-          this.$message.error(error);
-        });
+        .catch(error => {
+          this.$message.error(error)
+        })
     },
     tabChange(index) {
-      this.activeTab = index;
+      this.activeTab = index
     },
     onCopy() {
-      this.copyText = this.$t('modalInfo.copysuccess');
-      this.isCopy = true;
+      this.copyText = this.$t('modalInfo.copysuccess')
+      this.isCopy = true
       setTimeout(() => {
-        this.isCopy = false;
-        this.copyText = '';
-      }, 2000);
+        this.isCopy = false
+        this.copyText = ''
+      }, 2000)
     },
     onError() {
-      this.copyText = this.$t('modalInfo.copyfail');
-      this.isCopy = true;
+      this.copyText = this.$t('modalInfo.copyfail')
+      this.isCopy = true
       setTimeout(() => {
-        this.isCopy = false;
-        this.copyText = '';
-      }, 2000);
+        this.isCopy = false
+        this.copyText = ''
+      }, 2000)
     },
+    goRestricte() {
+      this.$router.push({
+        path: '/restricting-info',
+        query: {
+          address: this.address
+        }
+      })
+    }
   },
   //生命周期函数
   created() {
-    // this.address = this.$route.query.address.toLowerCase();
+    this.address = this.$route.query.address.toLowerCase()
     if (this.tokensDetail) {
-      this.detailInfo = this.tokensDetail;
+      this.detailInfo = this.tokensDetail
     } else {
-      this.getDetail();
+      this.getDetail()
     }
   },
-  mounted() {},
-};
+  mounted() {}
+}
 </script>
 <style lang="less" scoped>
 .restricted {

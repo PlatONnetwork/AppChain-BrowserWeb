@@ -46,18 +46,27 @@
                 <label class="Gilroy-Medium">{{
                   $t('contract.balance')
                 }}</label>
-                <div>
+                <div style="text-align: right">
                   <span class="money"
                     >{{ detailInfo.balance | formatMoney }}&nbsp;LAT</span
                   >
-                  <div v-if="detailInfo.isRestricting">
-                    <span class="restricted"
+                  <div>
+                    <span class="restricted" v-if="detailInfo.isRestricting"
                       >{{
                         detailInfo.restrictingBalance | formatMoney
                       }}&nbsp;LAT (<a
                         class="blue cursor"
                         @click="goRestricte"
                         >{{ $t('contract.restricted') }}</a
+                      >)</span
+                    >
+                    <span class="restricted" style="padding-left: 12px;" v-if="detailInfo.lockBalance > 0"
+                      >{{
+                        detailInfo.lockBalance | formatMoney
+                      }}&nbsp;LAT (<a
+                        class="blue cursor"
+                        @click="goDelegate"
+                        >{{ $t('contract.frozenDelegate') }}</a
                       >)</span
                     >
                   </div>
@@ -85,6 +94,15 @@
                 }}</label>
                 <div class="money">
                   {{ detailInfo.erc721TxQty | formatNumber }}
+                </div>
+              </li>
+              <li>
+                <!-- PRC1155交易 -->
+                <label class="Gilroy-Medium">{{
+                  $t('tokens.erc1155TokenTxns')
+                  }}</label>
+                <div class="money">
+                  {{ detailInfo.erc1155TxQty | formatNumber }}
                 </div>
               </li>
             </ul>
@@ -121,6 +139,20 @@
                   {{ detailInfo.delegateReleased | formatMoney }}&nbsp;LAT
                 </div>
               </li>
+              <li v-if="configData.switches.includes('delegate')">
+                <label class="Gilroy-Medium">
+                  {{ $t('contract.unclaimedDelegate') }}
+                  <el-tooltip class="item" placement="bottom">
+                    <div slot="content" class="delegate-msg">
+                      {{ $t('contract.unclaimedDelegateTips') }}
+                    </div>
+                    <i class="address-icon"></i>
+                  </el-tooltip>
+                </label>
+                <div class="money">
+                  {{ detailInfo.unLockBalance | formatMoney }}&nbsp;LAT
+                </div>
+              </li>
             </ul>
           </div>
         </el-col>
@@ -152,16 +184,29 @@
           size="medium"
           :class="{ active: tabIndex == 4 }"
           @click="tabChange(4)"
-          v-if="isAddressDetailsDelegation"
-          >{{ $t('contract.delegations') }}</el-button
+
+          >{{ $t('tokens.erc1155Tokens') }}</el-button
         >
         <el-button
           size="medium"
           :class="{ active: tabIndex == 5 }"
           @click="tabChange(5)"
+           v-if="isAddressDetailsDelegation"
+          >{{ $t('contract.delegations') }}</el-button
+        >
+        <el-button
+          size="medium"
+          :class="{ active: tabIndex == 6 }"
+          @click="tabChange(6)"
           v-if="isAddressDetailsReward"
           >{{ $t('tradeAbout.rewardDetails') }}</el-button
         >
+        <el-button
+          size="medium"
+          :class="{ active: tabIndex == 7 }"
+          @click="tabChange(7)"
+        >{{ $t('contract.innerTransfer') }}
+        </el-button>
       </div>
       <!-- 交易 -->
       <trade-list
@@ -177,20 +222,26 @@
       <!-- Erc721 Token -->
       <erc721-list v-show="tabIndex == 3" :address="address" :tradeCount="detailInfo"></erc721-list>
 
+      <!-- Erc1155 Token -->
+      <erc1155-list v-show="tabIndex == 4" :address="address" :tradeCount="detailInfo"></erc1155-list>
+
       <!-- 委托 -->
       <delegation-info
-        v-show="tabIndex == 4"
+        v-show="tabIndex == 5"
         :detailInfo="detailInfo"
         :address="address"
       ></delegation-info>
 
       <!-- 奖励领取明细 -->
       <reward-detail
-        v-show="tabIndex == 5"
+        v-show="tabIndex == 6"
         ref="rewardDetail"
         :tradeCount="detailInfo"
         :address="address"
       ></reward-detail>
+
+      <!-- 内部转账 -->
+      <innerTransfer-list v-show="tabIndex == 7" :tradeCount="detailInfo" :address="address"></innerTransfer-list>
     </div>
   </div>
 </template>
@@ -199,8 +250,10 @@ import apiService from '@/services/API-services';
 import { mapGetters } from 'vuex';
 
 import tradeList from '@/components/trade-list';
+import innerTransferList from '@/components/innerTransfer-list';
 import erc20List from '@/components/tokens/erc20-tokens-list';
 import erc721List from '@/components/tokens/erc721-tokens-list';
+import erc1155List from '@/components/tokens/erc1155-tokens-list'
 import rewardDetail from '@/components/address/rewardDetailTable';
 import delegationInfo from '@/components/address/delegations-info';
 
@@ -223,13 +276,15 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(['isAddressDetailsDelegation', 'isAddressDetailsReward'])
+    ...mapGetters(['isAddressDetailsDelegation', 'isAddressDetailsReward', 'configData'])
   },
   watch: {},
   components: {
     tradeList,
+    innerTransferList,
     erc20List,
     erc721List,
+    erc1155List,
     rewardDetail,
     delegationInfo,
   },
@@ -274,10 +329,19 @@ export default {
     tabChange(index) {
       this.tabIndex = index;
     },
-
     goRestricte() {
       this.$router.push({
         path: '/restricting-info',
+        query: {
+          address: this.address,
+        },
+      });
+    },
+    goDelegate() {
+      const {lockBalance: balance, lockDelegateList: list } = this.detailInfo
+      sessionStorage.setItem(this.address, JSON.stringify({balance, list}))
+      this.$router.push({
+        path: '/frozen-delegate-info',
         query: {
           address: this.address,
         },

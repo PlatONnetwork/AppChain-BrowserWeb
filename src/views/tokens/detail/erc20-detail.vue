@@ -113,7 +113,7 @@
         <el-button size="medium" :class="{ active: activeTab == 2 }" @click="tabChange(2)">{{ $t('tokens.holders_') }}</el-button>
       </div>
       <tokens-trade-list v-show="activeTab == 1" :address="address" :tradeCount="detailInfo" table-type="erc20"></tokens-trade-list>
-      <tokens-holder :address="address" v-show="activeTab == 2"></tokens-holder>
+      <tokens-holder :address="address" v-show="activeTab == 2" table-type="erc20"></tokens-holder>
     </div>
   </div>
 </template>
@@ -181,14 +181,6 @@ export default {
         this.copyText = '';
       }, 2000);
     },
-    goRestricte() {
-      this.$router.push({
-        path: '/restricting-info',
-        query: {
-          address: this.address,
-        },
-      });
-    },
   },
   //生命周期函数
   created() {
@@ -220,8 +212,8 @@ export default {
   }
 }
 .token-type-name {
-  padding-left: 12px;
-  font-size: 17px;
+  padding-left: 6px;
+  font-size: 16px;
   color: #999;
 }
 

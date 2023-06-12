@@ -12,6 +12,8 @@ export default {
     erc20Transfer: "PRC20 交易",
     erc721Tokens: "PRC721热门令牌",
     erc721Transfer: "PRC721 交易",
+    erc1155Tokens: "PRC1155热门合约",
+    erc1155Transfer: "PRC1155 交易",
     tokenList: "令牌列表",
     more: "更多",
     comesoon: "敬请期待",
@@ -39,6 +41,7 @@ export default {
   tokens: {
     erc20: "PRC 20",
     erc721: "PRC 721",
+    erc1155: "PRC 1155",
     tokenName: "令牌名称",
     owner: "所有者",
     holder: "持有者",
@@ -46,15 +49,18 @@ export default {
     Tokens: "持有人",
     hold20: "持有令牌",
     hold721: "持有令牌",
+    hold1155: "持有令牌",
     unit: "单位",
     symbol: "符号",
     typesToken: "种令牌",
     typeErc20Token: "种PRC20令牌",
     typeErc721Token: "种PRC721令牌",
+    typeErc1155Token: "种PRC1155令牌",
     tokens: "令牌",
     tokenID: "令牌ID",
     erc20Tokens: "PRC20令牌",
     erc721Tokens: "PRC721令牌",
+    erc1155Tokens: "PRC1155令牌",
     tokenDetail: "令牌详情",
     value: "价值",
     from: "发送方",
@@ -62,10 +68,12 @@ export default {
     quantity: "转账金额",
     totalSupply: "发行总量",
     totalSupply_721: "总供应量",
+    totalSupply_1155: "总供应量",
     holders: "持有数",
     holders_: "持有者",
     transfers: "交易数",
     transfers_721: "交易",
+    transfers_1155: "交易",
     transferNum: "交易次数",
     inventory: "库存",
     contract: "合约",
@@ -73,6 +81,7 @@ export default {
     website: "官网",
     erc20TokenTxns: "PRC20交易",
     erc721TokenTxns: "PRC721交易",
+    erc1155TokenTxns: "PRC1155交易",
     number: "数量",
     percentage: "百分比",
   },
@@ -90,6 +99,7 @@ export default {
     blockHeight: "区块",
     all: "总计",
     inventory: "个有效令牌",
+    innerTransfer: "内部转账",
     tokens: "代币交易",
     gasLimit: "燃料限制",
     gasUsed: "燃料消耗",
@@ -128,6 +138,7 @@ export default {
     WASM: "WASM合约",
     ERC20: "PRC20合约",
     ERC721: "PRC721合约",
+    ERC1155: "PRC1155合约",
     callFunction: "调用函数",
     creation: "合约创建",
     execution: "合约执行",
@@ -215,6 +226,8 @@ export default {
     voting: "提案投票",
     declare: "版本声明",
     createValidator: "创建验证节点",
+    extractDelegate: "提取委托",
+    extractDelegateAmount: "提取数量",
 
     increase: "增加自有质押",
     editValidator: "编辑验证节点",
@@ -275,6 +288,7 @@ export default {
     all: "所有",
     contractName: "合约名称",
     transactions: "交易",
+    innerTransfer: "内部交易",
     number: "数量",
     transactionsIn: "交易于",
     contractCreator: "合约创建信息",
@@ -303,6 +317,15 @@ export default {
     estimatedTime: "预计时间",
     unlocksNumber: "解锁数量",
 
+    frozenDelegateOverview: "委托冻结概览",
+    frozenDelegate: "委托冻结",
+    frozenDelegateTips: "处于冻结期，未参与其他委托业务的委托数",
+    frozenDelegatePlan: "委托冻结计划",
+    thawAmount: "解冻数量",
+    unclaimedDelegate: "待提取委托",
+    unclaimedDelegateTips: "冻结期结束，主动提取可以直接到账的委托数量",
+    frozenSum: "总计冻结数",
+
     unclaimedReward: "待领取委托奖励",
     invalidDelegations: "待赎回委托",
     totalDelegated: "总计委托",
@@ -310,6 +333,7 @@ export default {
     systemBuilt: "系统合约，无上链字节码",
     erc20Trade: "PRC20交易",
     erc721Trade: "PRC721交易",
+    erc1155Trade: "PRC1155交易",
 
     status: {
       name: "状态",
@@ -530,6 +554,8 @@ export default {
     7: "PRC20合约执行",
     8: "PRC721合约创建",
     9: "PRC721合约执行",
+    10: "PRC1155合约创建",
+    11: "PRC1155合约执行",
     21: "合约销毁",
     1000: "创建验证节点", //发起质押
     1001: "编辑验证节点", //修改质押信息
@@ -537,7 +563,7 @@ export default {
     1003: "退出验证节点", //撤销质押
     1004: "委托", //发起委托
     1005: "赎回委托", //减持/撤销委托
-    1006: "赎回委托", //赎回委托
+    1006: "提取委托", //赎回委托
     2000: "创建文本提案", //提交文本提案
     2001: "创建升级提案", //提交升级提案
     2002: "创建参数提案", //提交参数提案
@@ -580,14 +606,9 @@ export default {
     6: "已取消"
   },
   voteStatus: {
-    1: "YES",
-    2: "NO",
-    3: "ABSTAIN",
-    4: "SUPPORT",
-    11: "YES ",
-    12: "NO ",
-    13: "ABSTAIN ",
-    invalid: "(无效票)"
+    1: "支持",
+    2: "反对",
+    other: "弃权",
   },
   actionType: {
     1: "创建验证节点",
@@ -610,6 +631,8 @@ export default {
     maxValidators: "活跃验证节点数量。",
     unStakeFreezeDuration:
       "验证节点退出，质押金冻结的结算周期数（一个结算周期10750blocks）。",
+    unDelegateFreezeDuration:
+      "解除委托后，委托金冻结的结算周期数（一个结算周期10750blocks）",
     rewardPerMaxChangeRange: '"委托奖励比例" 每次修改的最大可调整幅度（‱）。',
     rewardPerChangeInterval:
       '"委托奖励比例" 允许再次修改需要等待的结算周期数（一个结算周期10750blocks）。',
@@ -651,6 +674,7 @@ export default {
   },
   tips: {
     totalSupply_721: "已铸造的Token总量",
+    totalSupply_1155: "已铸造的Token总量",
     circulatingSupply:`在市场上实时流通的、公众手中的Token数量。<br />
     实时流通供应量 = 总发行量 - 锁仓的Token - 激励池中的Token - 基金会托管的Token<br />
     其中，锁仓的Token为所有锁仓状态的Token，包含用于质押或委托的锁仓状态的Token，激励池中的Token包含激励池合约中的Token和未领取的Staking奖励Token。`,

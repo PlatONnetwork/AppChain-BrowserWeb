@@ -11,6 +11,7 @@ const BASE = process.env.VUE_APP_API_ROOT,
   HOME_URL = `${TOTAL}/home`,
   // HOME_URL = `http://10.10.8.8:8080/home/`,
   TRADE_URL = `${TOTAL}/transaction`,
+  INNERTRANSFER_URL = `${TOTAL}/internalTransfer`,
   ACCOUNT_URL = `${TOTAL}/address`,
   NODE_URL = `${TOTAL}/staking`,
   TICKET_URL = `${TOTAL}/ticket`,
@@ -55,6 +56,9 @@ const BASE = process.env.VUE_APP_API_ROOT,
     transactionDetailNavigate: `${TRADE_URL}/transactionDetailNavigate`,
     queryClaimByAddress: `${TRADE_URL}/queryClaimByAddress`
   },
+  INNERTRANSFER = {
+    listByOwnerAddress: `${INNERTRANSFER_URL}/listByOwnerAddress`
+  },
   PROPOSAL = {
     proposalList: `${PROPOSAL_URL}/proposalList`,
     proposalDetails: `${PROPOSAL_URL}/proposalDetails`,
@@ -84,6 +88,9 @@ const BASE = process.env.VUE_APP_API_ROOT,
     token721TxList: `${TOKEN_URL}/arc721-tx/list`,
     token721InventoryList: `${TOKEN_URL}/arc721-inventory/list`,
     token721InventoryDetail: `${TOKEN_URL}/arc721-inventory/detail`,
+    token1155TxList: `${TOKEN_URL}/arc1155-tx/list`,
+    token1155InventoryList: `${TOKEN_URL}/arc1155-inventory/list`,
+    token1155InventoryDetail: `${TOKEN_URL}/arc1155-inventory/detail`,
     // =================================================================
     tokenTransferList: `${TOKEN_URL}/tokenTransferList`,
     // 持有者列表
@@ -102,6 +109,7 @@ const BASE = process.env.VUE_APP_API_ROOT,
     exportTokenTransferList: `${TOKEN_URL}/exportTokenTransferList`,
     exportT20TxList: `${TOKEN_URL}/arc20-tx/export`,
     exportT721TxList: `${TOKEN_URL}/arc721-tx/export`,
+    exportT1155TxList: `${TOKEN_URL}/arc1155-tx/export`,
   },
   MORE = {
     queryConfig: `${MORE_URL}/queryConfig`,
@@ -113,6 +121,7 @@ export default {
   BLOCK,
   SEARCH,
   TRADE,
+  INNERTRANSFER,
   PROPOSAL,
   ACCOUNT,
   WS_CONFIG,

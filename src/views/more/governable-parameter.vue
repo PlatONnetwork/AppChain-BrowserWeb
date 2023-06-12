@@ -259,6 +259,69 @@
             </div>
           </div>
         </div>
+        <!-- 内容分割4-1 -->
+        <div v-if="lis.staking.unDelegateFreezeDuration" class="cont-box">
+          <h4 class="h4">unDelegateFreezeDuration</h4>
+          <p class="exp">{{ $t('more.unDelegateFreezeDuration') }}</p>
+          <!-- 有背景内容块 -->
+          <div class="cont-block">
+            <!-- Current Value: -->
+            <div class="current">
+              <div>
+                <span class="lable">{{ $t('more.currentValue') }}</span>
+                <span class="green">{{
+                  lis.staking.unDelegateFreezeDuration.value
+                }}</span>
+              </div>
+              <div class="progress-box">
+                <el-progress
+                  :percentage="
+                    getPercentage(lis.staking.unDelegateFreezeDuration, 1)
+                  "
+                  :show-text="false"
+                  :stroke-width="20"
+                  color="#3BB012"
+                ></el-progress>
+              </div>
+            </div>
+            <!-- Genesis Value: -->
+            <div class="genesis">
+              <div>
+                <span class="lable">{{ $t('more.genesisValue') }}</span>
+                <span class="black">{{
+                  lis.staking.unDelegateFreezeDuration.initValue
+                }}</span>
+              </div>
+              <div class="progress-box">
+                <el-progress
+                  :percentage="
+                    getPercentage(lis.staking.unDelegateFreezeDuration, 2)
+                  "
+                  :show-text="false"
+                  :stroke-width="20"
+                  color="#000000"
+                ></el-progress>
+              </div>
+            </div>
+            <!-- 底部数字 -->
+            <div class="bottom">
+              <div>
+                <span class="medium">{{
+                  lis.staking.unDelegateFreezeDuration.start
+                }}</span>
+                <span class="regular">{{
+                  lis.staking.unDelegateFreezeDuration.startValue
+                }}</span>
+              </div>
+              <div>
+                <span class="regular">unStakeFreezeDuration</span>
+                <span class="medium">{{
+                  lis.staking.unDelegateFreezeDuration.end
+                }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
         <!-- 内容分割5 -->
         <div class="cont-box">
           <h4 class="h4">rewardPerMaxChangeRange</h4>
@@ -1073,6 +1136,9 @@ export default {
       let i = 0,
         j = d.endValue - d.startValue,
         k = 0;
+      if (j <= 0) {
+        return 100
+      }
       if (s == 1) i = d.value - d.startValue;
       else if (s == 2) i = d.initValue - d.startValue;
       k = (i / j) * 100;
@@ -1096,7 +1162,7 @@ export default {
         } else {
           this.$message.error(errMsg);
         }
-            console.log('this.lis: ', this.lis);
+        // console.log('this.lis: ', this.lis);
       })
       .catch((error) => {
         this.$message.error(error);
