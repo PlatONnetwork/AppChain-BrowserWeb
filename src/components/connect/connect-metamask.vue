@@ -23,6 +23,7 @@
         :disabled="true"> {{ connectingText }} </el-button>
       <el-button
         v-else
+        type="primary"
         @click="connect"
         icon="icon-metamask-fox"
         :disabled="status.connect">
