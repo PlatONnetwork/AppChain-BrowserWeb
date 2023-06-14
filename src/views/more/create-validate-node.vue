@@ -84,7 +84,7 @@
     </div>
     <el-card v-else class="card-box">
       <div class="status-header-box" v-if="status.txWaiting">
-        <!-- <circle2 size="80px" stroke="20px" background="#41b883" color="#fcfdfd" /> -->
+        <img class="spin-img" src="@/assets/images/spin.svg" alt="" />
         <p class="status process">{{ $t('validateNode.creating') }}·</p>
       </div>
       <div class="status-header-box" v-else-if="!status.txWaiting && status.txStatus == 'success'">
@@ -101,45 +101,45 @@
       </div>
       <div key="nodeName" class="text item">
         <p>
-          <span>{{ $t('validateNode.nodeName') + ' :' }}</span>
+          {{ $t('validateNode.nodeName') + ' :' }}
         </p>
         <p>{{ this.form.nodeName }}</p>
       </div>
       <div key="nodeID" class="text item">
         <p>
-          <span>{{ $t('validateNode.nodeID') + ' :' }}</span>
+          {{ $t('validateNode.nodeID') + ' :' }}
         </p>
         <p>{{ this.form.nodeID }}</p>
       </div>
       <div key="blsPubKey" class="text item">
         <p>
-          <span>{{ $t('validateNode.blsPubKey') + ' :' }}</span>
+          {{ $t('validateNode.blsPubKey') + ' :' }}
         </p>
         <p>{{ this.form.blsPubKey }}</p>
       </div>
       <div key="nodeRelayAccount" class="text item">
         <p>
-          <span>{{ $t('validateNode.nodeRelayAccount') + ' :' }}</span>
+          {{ $t('validateNode.nodeRelayAccount') + ' :' }}
         </p>
         <p>{{ this.form.nodeManageAddr }}</p>
       </div>
       <div key="nodeEquityAccount" class="text item">
         <p>
-          <span>{{ $t('validateNode.nodeEquityAccount') + ':' }}</span>
+          {{ $t('validateNode.nodeEquityAccount') + ':' }}
         </p>
         <p>{{ this.form.rewardReceiveAddr }}</p>
       </div>
       <div key="stakingAmount" class="text item">
         <p>
-          <span>{{ $t('validateNode.stakingAmount') + ':' }}</span>
+          {{ $t('validateNode.stakingAmount') + ':' }}
         </p>
         <p>{{ this.form.stakingValue }}</p>
       </div>
       <div key="acceptDelegate" class="text item">
         <p>
-          <span>{{ $t('validateNode.acceptDelegate') + ':' }}</span>
+          {{ $t('validateNode.acceptDelegate') + ':' }}
         </p>
-        <p>{{ this.form.isAcceptDelegate ? '是' : '否' }}</p>
+        <p>{{ this.form.isAcceptDelegate ? $t('more.yes') : $t('more.no') }}</p>
       </div>
     </el-card>
   </div>
@@ -151,8 +151,7 @@ import connectMetamask from '@/components/connect/connect-metamask'
 
 export default {
   components: {
-    Circle2,
-    connectMetamask,
+    connectMetamask
   },
   name: 'create-validate-node',
   data() {
@@ -165,13 +164,13 @@ export default {
         nodeManageAddr: null,
         rewardReceiveAddr: null,
         stakingValue: null,
-        isAcceptDelegate: true,
+        isAcceptDelegate: true
       },
       status: {
         isSendTx: false,
         txWaiting: true,
-        txStatus: null,
-      },
+        txStatus: null
+      }
       // isCopy: false,
       // rules: {
       //   nodeName: [
@@ -247,35 +246,35 @@ export default {
       return {
         nodeName: [
           { required: true, message: this.$t('validateNode.emptyNodeName'), trigger: 'blur' },
-          { validator: validateNodeName, trigger: 'blur' },
+          { validator: validateNodeName, trigger: 'blur' }
         ],
         nodeLogo: [{ required: false, message: this.$t('validateNode.emptyNodeLogo'), trigger: 'blur' }],
         nodeID: [
           { required: true, message: this.$t('validateNode.emptyNodeID'), trigger: ['blur', 'change'] },
-          { validator: validateNodeID, trigger: 'blur' },
+          { validator: validateNodeID, trigger: 'blur' }
         ],
         blsPubKey: [
           { required: true, message: this.$t('validateNode.emptyBLSPubKey'), trigger: 'blur' },
-          { validator: validateBLS, trigger: 'blur' },
+          { validator: validateBLS, trigger: 'blur' }
         ],
         nodeManageAddr: [
           { required: true, message: this.$t('validateNode.emptyRelayAccount'), trigger: 'blur' },
-          { validator: validateAddress, trigger: 'blur' },
+          { validator: validateAddress, trigger: 'blur' }
         ],
         rewardReceiveAddr: [
           { required: true, message: this.$t('validateNode.emptyEquityAccount'), trigger: 'blur' },
-          { validator: validateAddress, trigger: 'blur' },
+          { validator: validateAddress, trigger: 'blur' }
         ],
         stakingValue: [
           { required: true, message: this.$t('validateNode.emptyStakingAmount'), trigger: 'blur' },
-          { validator: validateStakingValue, trigger: 'blur' },
-        ],
+          { validator: validateStakingValue, trigger: 'blur' }
+        ]
       }
-    },
+    }
   },
   methods: {
     sleep(ms) {
-      return new Promise((resolve) => setTimeout(resolve, ms))
+      return new Promise(resolve => setTimeout(resolve, ms))
     },
     async _handleCreate() {
       this.status.isSendTx = true
@@ -284,21 +283,12 @@ export default {
       this.status.txWaiting = false
       this.status.txStatus = 'success'
       console.log('******: ', this.form, this.status)
-    },
-  },
+    }
+  }
 }
 </script>
 
 <style lang="less">
-.text {
-  font-size: 14px;
-  color: #00070a;
-}
-
-.item {
-  padding: 18px 0;
-}
-
 .card-box {
   cursor: default;
   width: 480px;
@@ -311,11 +301,21 @@ export default {
       margin-top: 10px;
     }
 
+    .spin-img {
+      width: 66px;
+      height: 66px;
+      animation: rotate 1s linear infinite;
+    }
+
+    .rotate {
+      transform: rotate(360deg);
+    }
+
     img {
       margin: 0 auto;
     }
     .process {
-      color: #00070a;
+      color: #dc9c17;
     }
     .success {
       color: #70b603;
@@ -323,6 +323,17 @@ export default {
     .failed {
       color: #f50404;
     }
+  }
+
+  .text {
+    font-size: 14px;
+    color: #00070a;
+  }
+
+  .item {
+    padding: 18px 0;
+    display: flex;
+    gap: 10px;
   }
 }
 .page-createValidateNode {

@@ -1,50 +1,36 @@
 <template>
-  <div>
+  <div class="btn-wrapper">
     <div>
-      <el-button
-        v-if="!status.isValidNetwork"
-        type="danger"
-        :disabled="false"> {{ $t('validateNode.invalidNetwork') }} </el-button>
-      <el-button
-        v-else-if="status.account && checkBalance && status.balance == 0"
-        type="primary"
-        :disabled="true"> {{ insufficientBalanceText }} </el-button>
+      <el-button v-if="!status.isValidNetwork" type="danger" :disabled="false">
+        {{ $t('validateNode.invalidNetwork') }}
+      </el-button>
+      <el-button v-else-if="status.account && checkBalance && status.balance == 0" type="primary" :disabled="true">
+        {{ insufficientBalanceText }}
+      </el-button>
       <el-button
         v-else-if="status.account && checkAccount && status.account != account"
         type="primary"
-        :disabled="false"> {{ invalidAccountText }} </el-button>
-      <el-button
-        v-else-if="status.account"
-        type="primary"
-        @click="handlerCall"> {{ handlerText }} </el-button>
-      <el-button
-        v-else-if="status.loading"
-        type="primary"
-        :disabled="true"> {{ connectingText }} </el-button>
-      <el-button
-        v-else
-        type="primary"
-        @click="connect"
-        icon="icon-metamask-fox"
-        :disabled="status.connect">
-        {{ connectBtnText }}</el-button>
+        :disabled="false"
+      >
+        {{ invalidAccountText }}
+      </el-button>
+      <el-button v-else-if="status.account" type="primary" @click="handlerCall">{{ handlerText }}</el-button>
+      <el-button v-else-if="status.loading" type="primary" :disabled="true">{{ connectingText }}</el-button>
+      <el-button v-else type="primary" @click="connect" icon="icon-metamask-fox" :disabled="status.connect">
+        {{ connectBtnText }}
+      </el-button>
     </div>
     <div v-if="status.account && checkAccount && status.account != account">
-      <el-alert
-        :closable="false"
-        v-bind:title="invalidAccountTips"
-        type="error"
-        effect="dark">
-      </el-alert>
+      <el-alert :closable="false" v-bind:title="invalidAccountTips" type="error" effect="dark"></el-alert>
     </div>
   </div>
 </template>
 
 <script>
-import { NET_NAME, CHAIN_ID, RPC_URL, BASE_BSC_SCAN_URL } from "@/config/platon-config"
+import { NET_NAME, CHAIN_ID, RPC_URL, BASE_BSC_SCAN_URL } from '@/config/platon-config'
 
 export default {
-  name: "connectMetaMask",
+  name: 'connectMetaMask',
   props: {
     account: String,
     checkAccount: Boolean,
@@ -69,7 +55,7 @@ export default {
         account: '',
         balance: 0,
         hskBalance: 0
-      },
+      }
     }
   },
   computed: {
@@ -81,28 +67,32 @@ export default {
     async setAccount(accounts) {
       this.status.account = accounts[0] || ''
       if (this.status.account) {
-        this.status.balance = parseInt(await ethereum.request({
-          method: 'eth_getBalance',
-          params: [this.status.account]
-        }))
+        this.status.balance = parseInt(
+          await ethereum.request({
+            method: 'eth_getBalance',
+            params: [this.status.account]
+          })
+        )
         // this.status.hskBalance = await ethereum.request({method: 'eth_call', params: [{data: '', to: ''}]})
       }
     },
     validNetwork() {
-      return parseInt(ethereum?.chainId) == CHAIN_ID;
+      return parseInt(ethereum?.chainId) == CHAIN_ID
     },
     async setNetwork(chainId) {
       if (this.validNetwork()) {
         this.status.isValidNetwork = true
       } else {
         this.status.isValidNetwork = false
-        await this.switchNetwork();
+        await this.switchNetwork()
       }
       if (this.status.account) {
-        this.status.balance = parseInt(await ethereum.request({
-          method: 'eth_getBalance',
-          params: [this.status.account]
-        }))
+        this.status.balance = parseInt(
+          await ethereum.request({
+            method: 'eth_getBalance',
+            params: [this.status.account]
+          })
+        )
         // this.status.hskBalance = await ethereum.request({method: 'eth_call', params: [{data: '', to: ''}]})
       }
     },
@@ -118,10 +108,12 @@ export default {
       try {
         await ethereum.request({
           method: 'wallet_switchEthereumChain',
-          params: [{
-            chainId: `0x${CHAIN_ID.toString(16)}`
-          }],
-        });
+          params: [
+            {
+              chainId: `0x${CHAIN_ID.toString(16)}`
+            }
+          ]
+        })
       } catch (switchError) {
         // This error code indicates that the chain has not been added to MetaMask.
         if (switchError.code === 4902) {
@@ -135,13 +127,13 @@ export default {
                   nativeCurrency: {
                     name: 'PlatON',
                     symbol: 'LAT',
-                    decimals: 18,
+                    decimals: 18
                   },
                   rpcUrls: [RPC_URL],
-                  blockExplorerUrls: [BASE_BSC_SCAN_URL],
-                },
-              ],
-            });
+                  blockExplorerUrls: [BASE_BSC_SCAN_URL]
+                }
+              ]
+            })
           } catch (addError) {
             console.error('Failed to setup the network in Metamask:', addError)
             return
@@ -155,7 +147,7 @@ export default {
         this.$alert(this.$t('extension.error.noMetaMask'), this.$t('extension.error.tips'), {
           type: 'warning',
           dangerouslyUseHTMLString: true,
-          showConfirmButton: false,
+          showConfirmButton: false
         })
         return
       }
@@ -169,7 +161,7 @@ export default {
           this.status.connect = false
           this.status.loading = false
         })
-    },
+    }
   },
   async created() {
     const ua = navigator.userAgent
@@ -182,11 +174,11 @@ export default {
     this.status.metamaskEnable = Boolean(window.ethereum && window.ethereum.isMetaMask)
     if (this.status.metamaskEnable) {
       ethereum.on('accountsChanged', this.setAccount)
-      ethereum.on('chainChanged', this.setNetwork);
-      ethereum.request({ method: 'eth_accounts' }).then(async ()=> this.setAccount)
+      ethereum.on('chainChanged', this.setNetwork)
+      ethereum.request({ method: 'eth_accounts' }).then(async () => this.setAccount)
       if (!this.validNetwork()) {
         this.status.isValidNetwork = false
-        await this.switchNetwork();
+        await this.switchNetwork()
       } else {
         this.status.isValidNetwork = true
       }
@@ -196,5 +188,7 @@ export default {
 </script>
 
 <style scoped>
-
+.btn-wrapper {
+  width: 100%;
+}
 </style>
