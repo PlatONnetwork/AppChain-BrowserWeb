@@ -84,8 +84,7 @@
     </div>
     <el-card v-else class="card-box">
       <div class="status-header-box" v-if="status.txWaiting">
-        <circle2 size="80px" stroke="20px" background="#41b883" color="#fcfdfd" />
-        >
+        <!-- <circle2 size="80px" stroke="20px" background="#41b883" color="#fcfdfd" /> -->
         <p class="status process">{{ $t('validateNode.creating') }}·</p>
       </div>
       <div class="status-header-box" v-else-if="!status.txWaiting && status.txStatus == 'success'">
@@ -147,7 +146,6 @@
 </template>
 
 <script>
-import { Circle2 } from 'vue-loading-spinner'
 import { isAddress } from '@/services/web3-utils'
 import connectMetamask from '@/components/connect/connect-metamask'
 

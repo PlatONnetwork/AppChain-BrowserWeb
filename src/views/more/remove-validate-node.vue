@@ -49,7 +49,7 @@
       <div v-else>
         <el-card class="box-card">
           <div v-if="status.txWaiting">
-            <circle2 size="80px" stroke="20px" background="#41b883" color="#fcfdfd" style="margin-left: 40%"></circle2>
+            <!-- <circle2 size="80px" stroke="20px" background="#41b883" color="#fcfdfd" style="margin-left: 40%"></circle2> -->
             <p style="margin-left: 35%; margin-top: 10px;color: #00070a"> {{ $t('validateNode.processing') }}· </p>
           </div>
           <div v-else-if="!status.txWaiting && status.txStatus == 'success'">
@@ -80,12 +80,11 @@
 </template>
 
 <script>
-import { Circle2 } from 'vue-loading-spinner'
 import connectMetamask from '@/components/connect/connect-metamask'
 
 export default {
   components: {
-    Circle2,
+    // Circle2,
     connectMetamask
   },
   name: "remove-validate-node",
