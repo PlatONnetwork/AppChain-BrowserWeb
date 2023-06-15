@@ -3,17 +3,8 @@
     <div class="sub-foot" v-if="path == '/' && configData.links">
       <h3>{{ $t('indexInfo.resource') }}</h3>
       <div class="foot-tabs">
-        <span
-          v-for="item in configData.links"
-          :key="item.order"
-          :class="{ hanim: windowWidth > 750 }"
-        >
-          <a
-            class="ellipsis"
-            style="padding: 0 4px"
-            :href="item.url[configLang]"
-            target="_blank"
-          >
+        <span v-for="item in configData.links" :key="item.order" :class="{ hanim: windowWidth > 750 }">
+          <a class="ellipsis" style="padding: 0 4px" :href="item.url[configLang]" target="_blank">
             {{ item.name[configLang] }}
           </a>
         </span>
@@ -21,12 +12,13 @@
       <div class="foot-line"></div>
     </div>
     <div class="foot-index" v-if="path == '/' && configData.social">
-      <img class="foot-logo" :src="logoPrevURL + configData.logo" alt="" />
+      <!-- <img class="foot-logo" src="logoPrevURL + configData.logo" alt="" /> -->
+      <img class="foot-logo" src="@/assets/images/hashChainLogo.svg" alt="" />
       <p>
         {{
           $t('indexInfo.platScan', {
             siteName: configData.siteName,
-            chain: configData.chainName,
+            chain: configData.chainName
           })
         }}
       </p>
@@ -34,75 +26,52 @@
         {{
           $t('indexInfo.international', {
             year: curYear,
-            copyRight: configData.copyRight.toUpperCase(),
+            copyRight: configData.copyRight.toUpperCase()
           })
         }}
       </p>
       <div class="link-wrap">
         <a
-          :href="
-            configData.social[0].url[configLang] || 'https://t.me/PlatONNetwork'
-          "
+          :href="configData.social[0].url[configLang] || 'https://t.me/PlatONNetwork'"
           target="_blank"
           class="link-1"
         ></a>
         <a href="javascript:void(0);" class="link-2">
           <img
-            :src="
-              logoPrevURL + configData.social[1].qrcode ||
-              '../../assets/images/weixin.jpg'
-            "
+            :src="logoPrevURL + configData.social[1].qrcode || '../../assets/images/weixin.jpg'"
             alt=""
             class="wx-img"
           />
         </a>
         <a
-          :href="
-            configData.social[2].url[configLang] ||
-            'https://twitter.com/PlatON_Network'
-          "
+          :href="configData.social[2].url[configLang] || 'https://twitter.com/PlatON_Network'"
           target="_blank"
           class="link-3"
         ></a>
         <a
-          :href="
-            configData.social[3].url[configLang] ||
-            'https://www.reddit.com/user/PlatON_Network'
-          "
+          :href="configData.social[3].url[configLang] || 'https://www.reddit.com/user/PlatON_Network'"
           target="_blank"
           class="link-4"
         ></a>
         <a
-          :href="
-            configData.social[4].url[configLang] ||
-            'https://medium.com/@PlatON_Network'
-          "
+          :href="configData.social[4].url[configLang] || 'https://medium.com/@PlatON_Network'"
           target="_blank"
           class="link-5"
         ></a>
         <div class="link-br" />
         <a
-          :href="
-            configData.social[5].url[configLang] ||
-            'https://github.com/PlatONnetwork'
-          "
+          :href="configData.social[5].url[configLang] || 'https://github.com/PlatONnetwork'"
           target="_blank"
           class="link-6"
         ></a>
 
         <a
-          :href="
-            configData.social[6].url[configLang] ||
-            'https://www.linkedin.com/company/platonnetwork/'
-          "
+          :href="configData.social[6].url[configLang] || 'https://www.linkedin.com/company/platonnetwork/'"
           target="_blank"
           class="link-7"
         ></a>
         <a
-          :href="
-            configData.social[7].url[configLang] ||
-            'https://www.facebook.com/PlatONNetwork/'
-          "
+          :href="configData.social[7].url[configLang] || 'https://www.facebook.com/PlatONNetwork/'"
           target="_blank"
           class="link-8"
         ></a>
@@ -115,31 +84,20 @@
           class="link-9"
         ></a> -->
         <a
-          :href="
-            configData.social[9].url[configLang] ||
-            'https://www.chainnode.com/forum/267'
-          "
+          :href="configData.social[9].url[configLang] || 'https://www.chainnode.com/forum/267'"
           target="_blank"
           class="link-10"
         ></a>
       </div>
     </div>
-    <div
-      class="foot-no-index foot-index"
-      v-if="path != '/' && configData.social"
-    >
+    <div class="foot-no-index foot-index" v-if="path != '/' && configData.social">
       <div class="foot-left">
-        <img
-          :src="logoPrevURL + configData.logo"
-          style="width: 82px; height: 30px"
-          alt=""
-          class="foot-logo"
-        />
+        <img :src="logoPrevURL + configData.logo" style="width: 82px; height: 30px" alt="" class="foot-logo" />
         <p>
           {{
             $t('indexInfo.platScan', {
               siteName: configData.siteName,
-              chain: configData.chainName,
+              chain: configData.chainName
             })
           }}
         </p>
@@ -147,69 +105,45 @@
       <div class="foot-right">
         <div class="link-wrap">
           <a
-            :href="
-              configData.social[0].url[configLang] ||
-              'https://t.me/PlatONNetwork'
-            "
+            :href="configData.social[0].url[configLang] || 'https://t.me/PlatONNetwork'"
             target="_blank"
             class="link-1"
           ></a>
           <a href="javascript:void(0);" class="link-2">
             <img
-              :src="
-                logoPrevURL + configData.social[1].qrcode ||
-                '../../assets/images/weixin.jpg'
-              "
+              :src="logoPrevURL + configData.social[1].qrcode || '../../assets/images/weixin.jpg'"
               alt=""
               class="wx-img"
             />
           </a>
           <a
-            :href="
-              configData.social[2].url[configLang] ||
-              'https://twitter.com/PlatON_Network'
-            "
+            :href="configData.social[2].url[configLang] || 'https://twitter.com/PlatON_Network'"
             target="_blank"
             class="link-3"
           ></a>
           <a
-            :href="
-              configData.social[3].url[configLang] ||
-              'https://www.reddit.com/user/PlatON_Network'
-            "
+            :href="configData.social[3].url[configLang] || 'https://www.reddit.com/user/PlatON_Network'"
             target="_blank"
             class="link-4"
           ></a>
           <a
-            :href="
-              configData.social[4].url[configLang] ||
-              'https://medium.com/@PlatON_Network'
-            "
+            :href="configData.social[4].url[configLang] || 'https://medium.com/@PlatON_Network'"
             target="_blank"
             class="link-5"
           ></a>
           <div class="link-br" />
           <a
-            :href="
-              configData.social[5].url[configLang] ||
-              'https://github.com/PlatONnetwork'
-            "
+            :href="configData.social[5].url[configLang] || 'https://github.com/PlatONnetwork'"
             target="_blank"
             class="link-6"
           ></a>
           <a
-            :href="
-              configData.social[6].url[configLang] ||
-              'https://www.linkedin.com/company/platonnetwork/'
-            "
+            :href="configData.social[6].url[configLang] || 'https://www.linkedin.com/company/platonnetwork/'"
             target="_blank"
             class="link-7"
           ></a>
           <a
-            :href="
-              configData.social[7].url[configLang] ||
-              'https://www.facebook.com/PlatONNetwork/'
-            "
+            :href="configData.social[7].url[configLang] || 'https://www.facebook.com/PlatONNetwork/'"
             target="_blank"
             class="link-8"
           ></a>
@@ -222,10 +156,7 @@
             class="link-9"
           ></a> -->
           <a
-            :href="
-              configData.social[9].url[configLang] ||
-              'https://www.chainnode.com/forum/267'
-            "
+            :href="configData.social[9].url[configLang] || 'https://www.chainnode.com/forum/267'"
             target="_blank"
             class="link-10"
           ></a>
@@ -234,7 +165,7 @@
           {{
             $t('indexInfo.international', {
               year: curYear,
-              copyRight: configData.copyRight.toUpperCase(),
+              copyRight: configData.copyRight.toUpperCase()
             })
           }}
         </p>
@@ -243,42 +174,42 @@
   </div>
 </template>
 <script>
-import apiService from '@/services/API-services';
-import { mapState, mapActions, mapGetters, mapMutations } from 'vuex';
+import apiService from '@/services/API-services'
+import { mapState, mapActions, mapGetters, mapMutations } from 'vuex'
 export default {
   name: '',
   data() {
     return {
       path: '/',
-      curYear: new Date().getFullYear(),
-    };
+      curYear: new Date().getFullYear()
+    }
   },
   props: {},
   computed: {
     ...mapGetters(['configData']),
     lang() {
-      return this.$i18n.locale.indexOf('zh') !== -1 ? 'zh' : 'en';
+      return this.$i18n.locale.indexOf('zh') !== -1 ? 'zh' : 'en'
     },
     configLang() {
-      return this.$i18n.locale.indexOf('zh') !== -1 ? 'cn' : 'en';
+      return this.$i18n.locale.indexOf('zh') !== -1 ? 'cn' : 'en'
     },
     logoPrevURL() {
-      return process.env.VUE_APP_API_ROOT;
-    },
+      return process.env.VUE_APP_API_ROOT
+    }
   },
   watch: {
     '$route.path'(newVal, oldVal) {
-      this.path = newVal;
-    },
+      this.path = newVal
+    }
   },
   components: {},
   methods: {},
   //生命周期函数
   created() {
-    this.path = this.$route.path;
+    this.path = this.$route.path
   },
-  mounted() {},
-};
+  mounted() {}
+}
 </script>
 <style lang="less" scoped>
 .footer-wrap {
