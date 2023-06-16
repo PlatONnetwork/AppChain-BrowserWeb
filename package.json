@@ -1,8 +1,8 @@
 {
-  "name": "platon",
+  "name": "hashkey",
   "version": "1.0.0",
-  "description": "platon",
-  "author": "liangyanxiang <liangyanxiang@juzix.io>",
+  "description": "AppChain",
+  "author": "hashkey",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

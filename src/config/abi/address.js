@@ -1,1 +1,2 @@
-export const StakeManagerProxy = '0xBcad5dE91De1845Fe95812C206ED01d21fF7393F'
+export const StakeManagerAddress = '0xBcad5dE91De1845Fe95812C206ED01d21fF7393F'
+export const StakeManagerTestAddress = '0x2B94BE0B0f275bcf38d25D51AF08C1b7A5Eb81d2'

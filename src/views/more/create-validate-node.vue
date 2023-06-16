@@ -68,6 +68,18 @@
             </el-radio-group>
           </div>
         </el-form-item>
+        <el-form-item :label="$t('validateNode.nodeDesc')" prop="isAcceptDelegate" :required="false">
+          <el-input
+            v-model="form.desc"
+            type="textarea"
+            maxlength="200"
+            show-word-limit
+            :rows="3"
+            :placeholder="$t('validateNode.nodeDesc')"
+            clearable
+            autocomplete="off"
+          ></el-input>
+        </el-form-item>
         <el-form-item label="">
           <connect-metamask
             :account="form.rewardReceiveAddr"
@@ -141,6 +153,12 @@
         </p>
         <p>{{ this.form.isAcceptDelegate ? $t('more.yes') : $t('more.no') }}</p>
       </div>
+      <div key="desc" class="text item">
+        <p>
+          {{ $t('validateNode.nodeDesc') + ':' }}
+        </p>
+        <p>{{ this.form.desc }}</p>
+      </div>
     </el-card>
   </div>
 </template>
@@ -149,10 +167,9 @@
 import { isAddress } from '@/services/web3-utils'
 import connectMetamask from '@/components/connect/connect-metamask'
 import StakeManagerAbi from '@/config/abi/StakeManager.json'
-import { StakeManagerProxy } from '@/config/abi/address.js'
+import { StakeManagerAddress, StakeManagerTestAddress } from '@/config/abi/address.js'
 import web3 from 'web3'
 import { getAccounts } from '@/services/web3-tools'
-import { async } from 'q'
 
 export default {
   components: {
@@ -169,7 +186,8 @@ export default {
         nodeManageAddr: null,
         rewardReceiveAddr: null,
         stakingValue: null,
-        isAcceptDelegate: true
+        isAcceptDelegate: true,
+        desc: ''
       },
       status: {
         isSendTx: false,
@@ -291,7 +309,7 @@ export default {
           if (!window.ethereum) return message.error('Please install metamask')
           const address = await getAccounts()
           const web3ctx = new web3(window.ethereum)
-          const myContract = new web3ctx.eth.Contract(StakeManagerAbi, StakeManagerProxy)
+          const myContract = new web3ctx.eth.Contract(StakeManagerAbi, StakeManagerAddress)
           // handle stake
           const params = {
             owner: address,
@@ -299,9 +317,9 @@ export default {
             blsPubkey: this.form.blsPubKey,
             benefit: this.form.rewardReceiveAddr,
             amount: this.form.stakingValue,
-            heimdallFee: 'address',
-            acceptDelegation: 'address',
-            signerPubkey: 'address'
+            heimdallFee: '1', //费率，默认填1也可，填小一点
+            acceptDelegation: this.form.isAcceptDelegate,
+            signerPubkey: this.form.nodeID
           }
 
           myContract.methods.stakeFor(params).call()
@@ -387,8 +405,17 @@ export default {
         width: 100%;
         display: inline-block;
       }
-      .el-input {
+      .el-input,
+      .el-textarea {
         border: 1px solid #ebeef5;
+      }
+      .el-input__count {
+        font-size: 12px;
+        line-height: 20px;
+        float: right;
+        position: absolute;
+        right: 5px;
+        bottom: 3px;
       }
       .radio-box {
         position: relative;

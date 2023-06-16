@@ -18,11 +18,11 @@ export default {
     more: '更多',
     comesoon: '敬请期待',
     goole: 'Google reCAPTCHA无法获取！',
-    blockChain: '区块链',
+    blockChain: '区块链'
   },
   search: {
     searchBtn: '查询',
-    placeHolder: '请输入地址/区块高度/区块哈希/交易哈希查询',
+    placeHolder: '请输入地址/区块高度/区块哈希/交易哈希查询'
   },
   footer: {
     desc: 'PlatScan是PlatON区块链资源管理与分析平台',
@@ -31,12 +31,12 @@ export default {
     wallet: '钱包',
     officialWebsite: 'PlatON官网',
     whitePaper: '白皮书',
-    community: '社区',
+    community: '社区'
   },
   common: {
     time: '时间',
     serialnumber: '序号',
-    export: '下载csv',
+    export: '下载csv'
   },
   tokens: {
     erc20: 'PRC 20',
@@ -83,7 +83,7 @@ export default {
     erc721TokenTxns: 'PRC721交易',
     erc1155TokenTxns: 'PRC1155交易',
     number: '数量',
-    percentage: '百分比',
+    percentage: '百分比'
   },
   tradeAbout: {
     confirmTime: '确认时间',
@@ -273,7 +273,7 @@ export default {
     fromNode: '从验证节点',
     changedTo: '变更为',
     noData: '暂无数据',
-    noProposalData: '暂无提案数据',
+    noProposalData: '暂无提案数据'
   },
   contract: {
     contractDetail: '合约详情',
@@ -341,10 +341,10 @@ export default {
       normal: '正常',
       destructed: '合约已销毁',
       destructed2: '合约销毁',
-      destructed3: '已销毁',
+      destructed3: '已销毁'
     },
 
-    addressErr: '地址格式错误',
+    addressErr: '地址格式错误'
   },
   deleget: {
     validators: '已委托验证节点',
@@ -375,7 +375,7 @@ export default {
     rewardReceiveDetails: '奖励领取明细',
     totalReceiveReward: '累计已领取委托奖励',
     unclaimedReward: '待领取奖励',
-    unclaimedRewardMsg: '参与委托，当前可领取的委托奖励数。',
+    unclaimedRewardMsg: '参与委托，当前可领取的委托奖励数。'
   },
   blockAbout: {
     morethen: '总共',
@@ -398,7 +398,7 @@ export default {
     lookLast: '查看前一个区块',
     viewPrev: '查看前一个区块',
     viewNext: '查看后一个区块',
-    totalProduced: '累计出块',
+    totalProduced: '累计出块'
   },
   download: {
     info: '下载数据',
@@ -414,11 +414,11 @@ export default {
     downloadTip: '（最多支持下载3万条数据）',
     dataDate: '数据日期',
     today: '-至今',
-    mostDownloads: '(最多支持下载3万条数据)',
+    mostDownloads: '(最多支持下载3万条数据)'
   },
   modalInfo: {
     copysuccess: '已复制',
-    copyfail: '复制失败',
+    copyfail: '复制失败'
   },
   indexInfo: {
     WelcomeToPlatON: '欢迎来到 {chain} 区块链浏览器',
@@ -447,13 +447,13 @@ export default {
     atonDownload: 'ATON钱包下载',
     developer: '开发者帮助',
     platScan: '{siteName}是{chain}区块链资源管理与分析平台',
-    international: 'COPYRIGHT © {year} {copyRight} NETWORK.',
+    international: 'COPYRIGHT © {year} {copyRight} NETWORK.'
   },
   elseInfo: {
     hour: '时',
     minutes: '分',
     seconds: '秒',
-    day: '天',
+    day: '天'
   },
   nodeInfo: {
     validator: '验证节点',
@@ -527,7 +527,7 @@ export default {
     nextRewardRatio: '下一结算周期委托奖励比例',
 
     ratioTips: ' 节点收益（出块奖励，质押奖励）分配给委托者的奖励比例。',
-    unlockBlockHeight: '预估解锁块高',
+    unlockBlockHeight: '预估解锁块高'
   },
   nodeStatus: {
     1: '候选中',
@@ -536,7 +536,7 @@ export default {
     4: '退出中',
     5: '已退出',
     6: '共识中',
-    7: '已锁定',
+    7: '已锁定'
   },
   // 交易类型
   TxType: {
@@ -567,7 +567,7 @@ export default {
     2005: '创建取消提案', //取消提案
     3000: '举报验证节点',
     4000: '创建锁仓计划',
-    5000: '领取奖励',
+    5000: '领取奖励'
   },
 
   //合约类型
@@ -575,7 +575,7 @@ export default {
     0: '系统合约',
     1: 'EVM合约',
     2: 'WASM合约',
-    3: 'evm-token',
+    3: 'evm-token'
   },
 
   // 创建提案的提案类型
@@ -583,14 +583,14 @@ export default {
     2000: '文本提案', //文本提案
     2001: '升级提案', //升级提案
     2002: '参数提案', //参数提案
-    2005: '取消提案', //取消提案
+    2005: '取消提案' //取消提案
   },
   // 提案投票的提案类型
   proposalOption: {
     1: '文本提案', //文本提案
     2: '升级提案', //升级提案
     3: '参数提案', //参数提案
-    4: '取消提案', //取消提案
+    4: '取消提案' //取消提案
   },
   proposalStatus: {
     1: '投票中',
@@ -598,12 +598,12 @@ export default {
     3: '已拒绝',
     4: '已通过',
     5: '已通过',
-    6: '已取消',
+    6: '已取消'
   },
   voteStatus: {
     1: '支持',
     2: '反对',
-    other: '弃权',
+    other: '弃权'
   },
   actionType: {
     1: '创建验证节点',
@@ -615,7 +615,7 @@ export default {
     7: '低出块率处罚',
     10: '增加自有质押',
     11: '节点解除锁定',
-    12: '版本声明',
+    12: '版本声明'
   },
   more: {
     yes: '是',
@@ -643,10 +643,11 @@ export default {
     genesisValue: '初始值 :',
     zeroProduceCumulativeTime: '零出块持续的共识轮数，并在该时间内进行零出块次数的累计。',
     zeroProduceNumberThreshold: '零出块次数处罚阈值。',
-    zeroProduceFreezeDuration: '节点零出块惩罚被锁定时间（一个结算周期10750blocks）',
+    zeroProduceFreezeDuration: '节点零出块惩罚被锁定时间（一个结算周期10750blocks）'
   },
   extension: {
-    desc: '用户可以快速添加到他们的钱包和Web3 中间件提供商（如：MetaMask）连接到正确的Chain ID 和 Network ID 以连接到正确的链；步骤：',
+    desc:
+      '用户可以快速添加到他们的钱包和Web3 中间件提供商（如：MetaMask）连接到正确的Chain ID 和 Network ID 以连接到正确的链；步骤：',
     steps: ['连接...', '添加到...', '添加成功'],
     form: {
       rpc: '网络链接 URL',
@@ -654,7 +655,7 @@ export default {
       currency: '符号',
       website: '浏览器 URL',
       connect: '连接 MetaMask',
-      add: '添加到 MetaMask',
+      add: '添加到 MetaMask'
     },
     error: {
       already: 'MetaMask已存在链ID {0}',
@@ -663,8 +664,8 @@ export default {
       tips: '提示',
       isChrome: '请使用chrome浏览器安装MetaMask进行操作。',
       mobile: '请在PC端Chrome浏览器安装MetaMask进行操作。',
-      noChainId: 'MateMask版本过低或当前非MetaMask钱包',
-    },
+      noChainId: 'MateMask版本过低或当前非MetaMask钱包'
+    }
   },
   tips: {
     totalSupply_721: '已铸造的Token总量',
@@ -693,12 +694,13 @@ export default {
     计算公式：<br />
     过去24小时（即最近7个结算周期内），该节点出过的所有的块数量，除以，该节点应当出块的数量。其中，应当出块数量 = 该节点过去7个结算周期内（不包含当前结算周期），当选出块节点的次数 * 10。`,
     blockRate24h: `节点在过去24小时内实际出块数占节点应当出块数的比例。<br />
-    过去7个结算周期内（按照区块高度统计，实际在24小时左右），该节点出过的所有块数量，除以，该节点应当出块的数量。其中，应当出块数量 = 该节点过去7个结算周期内（不包含当前结算周期），当选出块节点的次数 * 10。`,
+    过去7个结算周期内（按照区块高度统计，实际在24小时左右），该节点出过的所有块数量，除以，该节点应当出块的数量。其中，应当出块数量 = 该节点过去7个结算周期内（不包含当前结算周期），当选出块节点的次数 * 10。`
   },
   validateNode: {
     nodeName: '节点名称',
     nodeLogo: '节点Logo',
     nodeID: '节点ID',
+    nodeDesc: '节点描述',
     blsPubKey: 'BLS公钥',
     nodeRelayAccount: '节点中继账户地址',
     nodeEquityAccount: '节点权益账户地址',
@@ -725,7 +727,7 @@ export default {
       nodeRelayAccount: '用于发起与主链消息通信交易的账户地址',
       nodeEquityAccount: '用于接收节点奖励以及管理节点的钱包地址',
       stakingAmount: '节点质押金额不能低于',
-      inputNodeID: '输入节点ID查询',
+      inputNodeID: '输入节点ID查询'
     },
     creating: '创建中, 请耐心等待···',
     createSucc: '创建成功',
@@ -740,7 +742,7 @@ export default {
     confirmExit: '确认退出',
     invalidNetwork: '无效的网络',
     insufficientLAT: 'LAT余额不足',
-    insufficientHSK: 'HSK余额不足',
+    insufficientHSK: 'HSK余额不足'
   },
   fund: {
     title: '基金会地址',
@@ -749,7 +751,7 @@ export default {
     pageTotal: `总计 <b class="black">{0}</b> 个地址`,
     tAddress: '地址',
     tBalance: '自由金余额 (LAT)',
-    tLockedBalance: '锁仓金余额 (LAT)',
+    tLockedBalance: '锁仓金余额 (LAT)'
   },
-  ...zhLocale,
+  ...zhLocale
 }

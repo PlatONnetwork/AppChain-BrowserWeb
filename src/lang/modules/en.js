@@ -18,11 +18,11 @@ export default {
     more: 'MORE',
     comesoon: 'Coming soon',
     goole: 'Google reCAPTCHA is not available!',
-    blockChain: 'BLOCKCHAIN',
+    blockChain: 'BLOCKCHAIN'
   },
   search: {
     searchBtn: 'Search',
-    placeHolder: 'Search by Address/BlockHeight/BlockHash/TxHash',
+    placeHolder: 'Search by Address/BlockHeight/BlockHash/TxHash'
   },
   footer: {
     desc: 'PlatScan is a Block Explorer and Analytics Platform for PlatON',
@@ -31,12 +31,12 @@ export default {
     wallet: 'Wallet',
     officialWebsite: 'PlatON Official Website',
     whitePaper: 'White Paper',
-    community: 'Community',
+    community: 'Community'
   },
   common: {
     time: 'Time',
     serialnumber: 'N.',
-    export: 'Download csv',
+    export: 'Download csv'
   },
   tokens: {
     erc20: 'PRC 20',
@@ -83,7 +83,7 @@ export default {
     erc721TokenTxns: 'PRC721 Token Txns',
     erc1155TokenTxns: 'PRC1155 Token Txns',
     number: 'quantity',
-    percentage: 'percentage',
+    percentage: 'percentage'
   },
   tradeAbout: {
     confirmTime: 'Time',
@@ -274,7 +274,7 @@ export default {
     fromNode: 'From',
     changedTo: 'changed to',
     noData: 'No data',
-    noProposalData: 'No proposal record',
+    noProposalData: 'No proposal record'
   },
   contract: {
     contractDetail: 'CONTRACT DETAILS',
@@ -344,10 +344,10 @@ export default {
       normal: 'Normal',
       destructed: 'Contract was Destructed',
       destructed2: 'Contract Destructed',
-      destructed3: 'Destructed',
+      destructed3: 'Destructed'
     },
 
-    addressErr: 'Wrong address',
+    addressErr: 'Wrong address'
   },
   deleget: {
     validators: 'Validators',
@@ -379,7 +379,7 @@ export default {
     rewardReceiveDetails: 'Reward Details',
     totalReceiveReward: 'Total claimed reward',
     unclaimedReward: 'Unclaimed Reward',
-    unclaimedRewardMsg: 'Delegated LATs，Receivable rewards.',
+    unclaimedRewardMsg: 'Delegated LATs，Receivable rewards.'
   },
   blockAbout: {
     morethen: 'Total ',
@@ -402,7 +402,7 @@ export default {
     lookLast: 'Look at the previous block',
     viewPrev: 'View Previous Block',
     viewNext: 'View Next Block',
-    totalProduced: 'Total Produced',
+    totalProduced: 'Total Produced'
   },
   download: {
     info: 'Download Data',
@@ -419,11 +419,11 @@ export default {
     downloadTip: '(Up to support 30,000 data downloads)',
     dataDate: 'Data Date',
     today: '-Today',
-    mostDownloads: '(Up to support 30,000 data downloads)',
+    mostDownloads: '(Up to support 30,000 data downloads)'
   },
   modalInfo: {
     copysuccess: 'Copied',
-    copyfail: 'Copy the failure',
+    copyfail: 'Copy the failure'
   },
   indexInfo: {
     WelcomeToPlatON: 'Welcome to {chain} Blockchain Explorer',
@@ -452,13 +452,13 @@ export default {
     atonDownload: 'ATON Download',
     developer: 'Developer',
     platScan: '{siteName} is a Block Explorer and Analytics Platform for {chain}',
-    international: 'COPYRIGHT © {year} {copyRight} NETWORK.',
+    international: 'COPYRIGHT © {year} {copyRight} NETWORK.'
   },
   elseInfo: {
     hour: 'h ',
     minutes: 'm ',
     seconds: 's ',
-    day: 'd ',
+    day: 'd '
   },
   nodeInfo: {
     validator: 'Validator',
@@ -533,7 +533,7 @@ export default {
     nextRewardRatio: 'Next staking reward ratio',
 
     ratioTips: 'Proportion of rewards distributed by the node to the delegators.',
-    unlockBlockHeight: 'Estimate the unlock block height',
+    unlockBlockHeight: 'Estimate the unlock block height'
   },
   nodeStatus: {
     1: 'Candidate',
@@ -542,7 +542,7 @@ export default {
     4: 'Exiting',
     5: 'Exited',
     6: 'Verifying...',
-    7: 'Locked',
+    7: 'Locked'
   },
   // 交易类型
   TxType: {
@@ -573,7 +573,7 @@ export default {
     2005: 'CancelProposal', //取消提案
     3000: 'ReportValidator', //'举报验证节点',
     4000: 'CreateLockup', //'创建锁仓计划'
-    5000: 'ClaimRewards',
+    5000: 'ClaimRewards'
   },
 
   //合约类型
@@ -581,7 +581,7 @@ export default {
     0: 'PPOS Contract',
     1: 'EVM Contract',
     2: 'WASM Contract',
-    3: 'evm-token',
+    3: 'evm-token'
   },
 
   // 创建提案的提案类型
@@ -589,14 +589,14 @@ export default {
     2000: 'Text Proposal', //文本提案
     2001: 'Upgrade Proposal', //升级提案
     2002: 'Parameter Proposal', //参数提案
-    2005: 'Cancel Proposal', //取消提案
+    2005: 'Cancel Proposal' //取消提案
   },
   // 提案投票的提案类型
   proposalOption: {
     1: 'Text Proposal', //文本提案
     2: 'Upgrade Proposal', //升级提案
     3: 'Parameter Proposal', //参数提案
-    4: 'Cancel Proposal', //取消提案
+    4: 'Cancel Proposal' //取消提案
   },
   proposalStatus: {
     1: 'Voting',
@@ -604,12 +604,12 @@ export default {
     3: 'Rejected',
     4: 'Passed',
     5: 'Passed',
-    6: 'Cancelled',
+    6: 'Cancelled'
   },
   voteStatus: {
     1: 'YEAS',
     2: 'NAYS',
-    other: 'ABSTENTIONS',
+    other: 'ABSTENTIONS'
   },
   actionType: {
     1: 'Create the Validator',
@@ -621,7 +621,7 @@ export default {
     7: 'Low Block Rate',
     10: 'Increase Self-Stakes',
     11: 'Node release',
-    12: 'DeclareVersion',
+    12: 'DeclareVersion'
   },
   more: {
     yes: 'Yes',
@@ -652,10 +652,11 @@ export default {
     zeroProduceCumulativeTime:
       'Penalty threshold：Maintaining the consensus round number of zero production blocks,and accumulate times.',
     zeroProduceNumberThreshold: 'Penalty threshold：Number of zero production blocks.',
-    zeroProduceFreezeDuration: 'The lock time of node zero out-block penalty（1 epoch=10750blocks）',
+    zeroProduceFreezeDuration: 'The lock time of node zero out-block penalty（1 epoch=10750blocks）'
   },
   extension: {
-    desc: 'Users can quickly add to their wallets and Web3 middleware providers (such as MetaMask) to connect to the correct Chain ID and Network ID to connect to the correct chain.Step:',
+    desc:
+      'Users can quickly add to their wallets and Web3 middleware providers (such as MetaMask) to connect to the correct Chain ID and Network ID to connect to the correct chain.Step:',
     steps: ['Connect...', 'Add to...', 'Success'],
     form: {
       rpc: 'Network URL',
@@ -663,7 +664,7 @@ export default {
       currency: 'Currency',
       website: 'Explorer URL',
       connect: 'Connect MetaMask',
-      add: 'Add to MetaMask',
+      add: 'Add to MetaMask'
     },
     error: {
       already: 'MetaMask already exists Chain ID {0}',
@@ -671,8 +672,8 @@ export default {
       tips: 'TIPS',
       isChrome: 'Please use chrome browser to install MetaMask to operate.',
       mobile: 'Please install MetaMask on the PC Chrome browser to operate.',
-      noChainId: 'MateMask version is to low or This is not MetaMask',
-    },
+      noChainId: 'MateMask version is to low or This is not MetaMask'
+    }
   },
   tips: {
     totalSupply_721: 'Total amount of Tokens',
@@ -704,12 +705,13 @@ export default {
     AmountTotal:the number of blocks that the node should generate in the past 7 settlement epochs. <br />
     AmountTotal = 10 * validatorTimes<br .>validatorTimes: the number of times the node was elected as a Validator in the past 7 settlement epochs (not including the current settlement epoch).`,
     blockRate24h: `The ratio of the actual number of blocks generated by the node to the number of blocks that the node should generate in the past 24 hours.<br />
-    In the past 7 epochs (according to the block height, around 24 hours in reality), the number of blocks that the node has generated is divided by the number of blocks that the node should generate. Among them, the number of blocks that should be generated = the number of times the node has been elected to be a block proposer in the past 7 epochs (excluding the current epoch) * 10.`,
+    In the past 7 epochs (according to the block height, around 24 hours in reality), the number of blocks that the node has generated is divided by the number of blocks that the node should generate. Among them, the number of blocks that should be generated = the number of times the node has been elected to be a block proposer in the past 7 epochs (excluding the current epoch) * 10.`
   },
   validateNode: {
     nodeName: 'Node Name',
     nodeLogo: 'Node Logo',
     nodeID: 'Node ID',
+    nodeDesc: 'Node Description',
     blsPubKey: 'BLS PublicKey',
     nodeRelayAccount: 'Node Relay Account',
     nodeEquityAccount: 'Node Equity Account',
@@ -736,7 +738,7 @@ export default {
       nodeRelayAccount: 'Account address for initiating transactions to communicate with main chain messages',
       nodeEquityAccount: 'Wallet address for receiving node rewards and managing nodes',
       stakingAmount: 'Staking amount cannot be less than',
-      inputNodeID: 'Enter the node ID to search',
+      inputNodeID: 'Enter the node ID to search'
     },
     creating: 'Creating, Please Wait Patiently···',
     createSucc: 'Create Successfully',
@@ -751,7 +753,7 @@ export default {
     confirmExit: 'Confirm Exit',
     invalidNetwork: 'Invalid Network',
     insufficientLAT: 'Insufficient LAT Balance',
-    insufficientHSK: 'Insufficient HSK Balance',
+    insufficientHSK: 'Insufficient HSK Balance'
   },
   fund: {
     title: 'Foundation Address',
@@ -760,7 +762,7 @@ export default {
     pageTotal: `Totally <b class="black">{0}</b> addresses`,
     tAddress: 'Address',
     tBalance: 'Balance (LAT)',
-    tLockedBalance: 'Lockup Balance (LAT)',
+    tLockedBalance: 'Lockup Balance (LAT)'
   },
-  ...enLocale,
+  ...enLocale
 }

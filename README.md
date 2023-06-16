@@ -1,4 +1,4 @@
-# Platon Blockchain Browser
+# HashKey Browser
 
 ## start
 

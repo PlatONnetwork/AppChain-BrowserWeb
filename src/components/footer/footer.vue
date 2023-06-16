@@ -1,6 +1,6 @@
 <template>
   <div class="footer-wrap">
-    <div class="sub-foot" v-if="path == '/' && configData.links">
+    <!-- <div class="sub-foot" v-if="path == '/' && configData.links">
       <h3>{{ $t('indexInfo.resource') }}</h3>
       <div class="foot-tabs">
         <span v-for="item in configData.links" :key="item.order" :class="{ hanim: windowWidth > 750 }">
@@ -10,15 +10,15 @@
         </span>
       </div>
       <div class="foot-line"></div>
-    </div>
+    </div> -->
     <div class="foot-index" v-if="path == '/' && configData.social">
       <!-- <img class="foot-logo" src="logoPrevURL + configData.logo" alt="" /> -->
       <img class="foot-logo" src="@/assets/images/hashChainLogo.svg" alt="" />
       <p>
         {{
           $t('indexInfo.platScan', {
-            siteName: configData.siteName,
-            chain: configData.chainName
+            siteName: ` HASHKEYSCAN `,
+            chain: ` HASHKEY `
           })
         }}
       </p>
@@ -26,11 +26,11 @@
         {{
           $t('indexInfo.international', {
             year: curYear,
-            copyRight: configData.copyRight.toUpperCase()
+            copyRight: `HASHKEY`
           })
         }}
       </p>
-      <div class="link-wrap">
+      <!-- <div class="link-wrap">
         <a
           :href="configData.social[0].url[configLang] || 'https://t.me/PlatONNetwork'"
           target="_blank"
@@ -75,35 +75,27 @@
           target="_blank"
           class="link-8"
         ></a>
-        <!-- <a
-          :href="
-            configData.social[8].url[configLang] ||
-            'https://bihu.com/people/1215832888'
-          "
-          target="_blank"
-          class="link-9"
-        ></a> -->
         <a
           :href="configData.social[9].url[configLang] || 'https://www.chainnode.com/forum/267'"
           target="_blank"
           class="link-10"
         ></a>
-      </div>
+      </div> -->
     </div>
     <div class="foot-no-index foot-index" v-if="path != '/' && configData.social">
       <div class="foot-left">
-        <img :src="logoPrevURL + configData.logo" style="width: 82px; height: 30px" alt="" class="foot-logo" />
+        <img src="@/assets/images/hashScanLogo.svg" style="width: 82px; height: 30px" alt="" class="foot-logo" />
         <p>
           {{
             $t('indexInfo.platScan', {
-              siteName: configData.siteName,
-              chain: configData.chainName
+              siteName: ` HASHKEYSCAN `,
+              chain: ` HASHKEY `
             })
           }}
         </p>
       </div>
       <div class="foot-right">
-        <div class="link-wrap">
+        <!-- <div class="link-wrap">
           <a
             :href="configData.social[0].url[configLang] || 'https://t.me/PlatONNetwork'"
             target="_blank"
@@ -147,25 +139,17 @@
             target="_blank"
             class="link-8"
           ></a>
-          <!-- <a
-            :href="
-              configData.social[8].url[configLang] ||
-              'https://bihu.com/people/1215832888'
-            "
-            target="_blank"
-            class="link-9"
-          ></a> -->
           <a
             :href="configData.social[9].url[configLang] || 'https://www.chainnode.com/forum/267'"
             target="_blank"
             class="link-10"
           ></a>
-        </div>
+        </div> -->
         <p>
           {{
             $t('indexInfo.international', {
               year: curYear,
-              copyRight: configData.copyRight.toUpperCase()
+              copyRight: `HASHKEY`
             })
           }}
         </p>
@@ -328,6 +312,7 @@ export default {
   .foot-logo {
     width: 200px;
     margin: 0 auto;
+    margin-top: 120px;
   }
   p:nth-of-type(1) {
     font-size: 14px;
