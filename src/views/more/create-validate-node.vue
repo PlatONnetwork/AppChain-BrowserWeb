@@ -148,6 +148,11 @@
 <script>
 import { isAddress } from '@/services/web3-utils'
 import connectMetamask from '@/components/connect/connect-metamask'
+import StakeManagerAbi from '@/config/abi/StakeManager.json'
+import { StakeManagerProxy } from '@/config/abi/address.js'
+import web3 from 'web3'
+import { getAccounts } from '@/services/web3-tools'
+import { async } from 'q'
 
 export default {
   components: {
@@ -276,13 +281,42 @@ export default {
     sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms))
     },
+
+    skateForFn() {},
+
     async _handleCreate() {
-      this.status.isSendTx = true
-      this.status.txWaiting = true
-      await this.sleep(3000)
-      this.status.txWaiting = false
-      this.status.txStatus = 'success'
-      console.log('******: ', this.form, this.status)
+      this.$refs.form.validate(async valid => {
+        if (valid) {
+          // this.status.isSendTx = true
+          if (!window.ethereum) return message.error('Please install metamask')
+          const address = await getAccounts()
+          const web3ctx = new web3(window.ethereum)
+          const myContract = new web3ctx.eth.Contract(StakeManagerAbi, StakeManagerProxy)
+          // handle stake
+          const params = {
+            owner: address,
+            desc: '',
+            blsPubkey: this.form.blsPubKey,
+            benefit: this.form.rewardReceiveAddr,
+            amount: this.form.stakingValue,
+            heimdallFee: 'address',
+            acceptDelegation: 'address',
+            signerPubkey: 'address'
+          }
+
+          myContract.methods.stakeFor(params).call()
+
+          console.log('myContract', myContract)
+
+          // this.status.txWaiting = true
+          // await this.sleep(3000)
+          // this.status.txWaiting = false
+          // this.status.txStatus = 'success'
+          console.log('******: ', this.form, this.status)
+        } else {
+          return false
+        }
+      })
     }
   }
 }

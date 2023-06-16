@@ -783,8 +783,10 @@ export default {
     color: #fff;
     letter-spacing: 0;
     text-align: right;
+    vertical-align: middle;
     .el-dropdown-link {
       cursor: pointer;
+      vertical-align: middle;
     }
   }
 }

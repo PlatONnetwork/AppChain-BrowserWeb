@@ -1,25 +1,19 @@
 <template>
   <div class="btn-wrapper">
-    <div>
-      <el-button v-if="!status.isValidNetwork" type="danger" :disabled="false">
-        {{ $t('validateNode.invalidNetwork') }}
-      </el-button>
-      <el-button v-else-if="status.account && checkBalance && status.balance == 0" type="primary" :disabled="true">
-        {{ insufficientBalanceText }}
-      </el-button>
-      <el-button
-        v-else-if="status.account && checkAccount && status.account != account"
-        type="primary"
-        :disabled="false"
-      >
-        {{ invalidAccountText }}
-      </el-button>
-      <el-button v-else-if="status.account" type="primary" @click="handlerCall">{{ handlerText }}</el-button>
-      <el-button v-else-if="status.loading" type="primary" :disabled="true">{{ connectingText }}</el-button>
-      <el-button v-else type="primary" @click="connect" icon="icon-metamask-fox" :disabled="status.connect">
-        {{ connectBtnText }}
-      </el-button>
-    </div>
+    <el-button v-if="!status.isValidNetwork" type="danger" :disabled="false">
+      {{ $t('validateNode.invalidNetwork') }}
+    </el-button>
+    <el-button v-else-if="status.account && checkBalance && status.balance == 0" type="primary" :disabled="true">
+      {{ insufficientBalanceText }}
+    </el-button>
+    <el-button v-else-if="status.account && checkAccount && status.account != account" type="primary" :disabled="false">
+      {{ invalidAccountText }}
+    </el-button>
+    <el-button v-else-if="status.account" type="primary" @click="handlerCall">{{ handlerText }}</el-button>
+    <el-button v-else-if="status.loading" type="primary" :disabled="true">{{ connectingText }}</el-button>
+    <el-button v-else type="primary" @click="connect" icon="el-icon-metamask-fox" :disabled="status.connect">
+      {{ connectBtnText }}
+    </el-button>
     <div v-if="status.account && checkAccount && status.account != account">
       <el-alert :closable="false" v-bind:title="invalidAccountTips" type="error" effect="dark"></el-alert>
     </div>
@@ -187,8 +181,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
 .btn-wrapper {
   width: 100%;
+  .el-button {
+    height: 50px;
+    display: flex;
+    align-items: center;
+  }
 }
 </style>

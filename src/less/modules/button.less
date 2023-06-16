@@ -1,54 +1,68 @@
 //按钮
-.el-button.el-button--primary{
-    color: #fff;
-    border: 1px solid @blue;
-    &:not(.is-disabled):hover{
-      background: @lightblue;
-      border-color:@lightblue;
-    }
-    &:not(.is-disabled):active{
-      background: #0189CA;
-      border-color:#0189CA;
-    }
-    &.is-disabled{
-      color:#eee;
-      background: #D8D8D8;
-    }
-    &:focus{
-      background: #0D6CDA;
-    }
+.el-button.el-button--primary {
+  color: #fff;
+  border: 1px solid @blue;
+  &:not(.is-disabled):hover {
+    background: @lightblue;
+    border-color: @lightblue;
   }
-  
-  .el-button--default{
-    color: @blue;
-    border: 1px solid @blue;
-    &:not(.is-disabled):hover{
-        background: #5CB2DB;
-        border-color:#5CB2DB;
-    }
-    &:not(.is-disabled):active{
-        background: #0E52AC;
-        border-color:#0E52AC;
-    }
-    &.is-disabled{
-      border: 1px solid #D8D8D8;
-      color: #D8D8D8;
-    }
+  &:not(.is-disabled):active {
+    background: #0189ca;
+    border-color: #0189ca;
   }
-  .el-button--text{
-    color: @blue;
+  &.is-disabled {
+    color: #eee;
+    background: #d8d8d8;
   }
+  &:focus {
+    background: #0d6cda;
+  }
+}
 
-  .detail-arrow .el-button.el-button--default:hover{
-    background: #fff;
-    &.is-disabled{
-      border: 1px solid #F5F5F5 !important;
-    }
+.el-button--default {
+  color: @blue;
+  border: 1px solid @blue;
+  &:not(.is-disabled):hover {
+    background: #5cb2db;
+    border-color: #5cb2db;
   }
+  &:not(.is-disabled):active {
+    background: #0e52ac;
+    border-color: #0e52ac;
+  }
+  &.is-disabled {
+    border: 1px solid #d8d8d8;
+    color: #d8d8d8;
+  }
+}
+.el-button--text {
+  color: @blue;
+}
 
-  .search-index .el-button.el-button--primary{
-    &:not(.is-disabled):hover{
-      background: @white !important;
-      // border-left: 1px solid #fff;
-    }
+.detail-arrow .el-button.el-button--default:hover {
+  background: #fff;
+  &.is-disabled {
+    border: 1px solid #f5f5f5 !important;
   }
+}
+
+.search-index .el-button.el-button--primary {
+  &:not(.is-disabled):hover {
+    background: @white !important;
+    // border-left: 1px solid #fff;
+  }
+}
+
+//修改icon
+.el-icon-metamask-fox {
+  background: url('../../assets/images/metamask.svg') no-repeat;
+  font-size: 16px;
+  background-size: 100% 100%;
+  width: 30px;
+  height: 30px;
+  vertical-align: middle;
+}
+.el-icon-metamask-fox:before {
+  content: '';
+  font-size: 16px;
+}
