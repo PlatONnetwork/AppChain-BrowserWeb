@@ -179,7 +179,8 @@
     <div class="right-most">
       <el-dropdown placement="bottom-start" @visible-change="netVisibleChange">
         <span class="el-dropdown-link">
-          {{ configData.headerChainName }}
+          <!-- {{ configData.headerChainName }} -->
+          {{ `HASHKEY Mainnet` }}
           <i
             :class="{
               arrowDown: netDropdownShow == false,
@@ -190,7 +191,7 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
-            {{ configData.headerChainName }}
+            {{ `HASHKEY Mainnet` }}
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
