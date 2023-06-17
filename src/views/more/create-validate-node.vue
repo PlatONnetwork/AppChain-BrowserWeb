@@ -317,6 +317,7 @@ export default {
     },
 
     async _handleCreate() {
+      return
       this.$refs.form.validate(async valid => {
         if (valid) {
           // this.status.isSendTx = true

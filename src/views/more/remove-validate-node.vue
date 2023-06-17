@@ -114,6 +114,7 @@ export default {
   },
   methods: {
     async getNodeInfo() {
+      return
       // 根据nodeID调用接口获取node info
       this.form.rewardReceiveAddr = '0x810b7bacEfD5ba495bB688bbFD2501C904036AB7'.toLowerCase()
     },
