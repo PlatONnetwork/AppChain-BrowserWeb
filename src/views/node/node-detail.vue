@@ -97,7 +97,7 @@
               <Item
                 v-if="!detailInfo.isInit"
                 :vertical="true"
-                :label="$t('nodeInfo.totalNodeReward') + ' (LAT)'"
+                :label="$t('nodeInfo.totalNodeReward') + ' (HSK)'"
               >
                 <p>
                   <span class="Gilroy-Medium black fontSize18">{{
@@ -123,7 +123,7 @@
               <Item
                 v-if="!detailInfo.isInit"
                 :vertical="true"
-                :label="$t('nodeInfo.totalStakePower') + ' (LAT)'"
+                :label="$t('nodeInfo.totalStakePower') + ' (HSK)'"
                 class="total-stake"
               >
                 <p
@@ -169,7 +169,7 @@
               <Item
                 v-if="detailInfo.isInit"
                 :vertical="true"
-                :label="$t('nodeInfo.selfstake') + ' (LAT)'"
+                :label="$t('nodeInfo.selfstake') + ' (HSK)'"
                 class="total-stake"
               >
                 <p class="Gilroy-Medium">
@@ -219,7 +219,7 @@
               </Item>
               <Item
                 :vertical="true"
-                :label="$t('nodeInfo.totalDelegatedReward') + ' (LAT)'"
+                :label="$t('nodeInfo.totalDelegatedReward') + ' (HSK)'"
               >
                 <p>
                   <span class="Gilroy-Medium black fontSize18">{{
@@ -234,7 +234,7 @@
               <!-- TODO 需要在未退回到验证节点账户时，显示没有返还到节点钱 显示带解锁 此处需要一个状态 -->
               <Item
                 :vertical="true"
-                :label="$t('nodeInfo.selfstake') + ' (LAT)'"
+                :label="$t('nodeInfo.selfstake') + ' (HSK)'"
                 class="total-stake"
               >
                 <p class="Gilroy-Medium">
@@ -293,7 +293,7 @@
               </Item>
               <Item
                 :vertical="true"
-                :label="$t('contract.unclaimedReward') + ' (LAT)'"
+                :label="$t('contract.unclaimedReward') + ' (HSK)'"
               >
                 <p>
                   <span class="Gilroy-Medium black fontSize18">{{
@@ -308,7 +308,7 @@
               <!-- TODO 此处历史节点显示另外一个数据 -->
               <Item
                 :vertical="true"
-                :label="$t('deleget.acceptDelegations') + ' (LAT)'"
+                :label="$t('deleget.acceptDelegations') + ' (HSK)'"
                 v-if="detailInfo.status != 4 && detailInfo.status != 5"
               >
                 <p>
@@ -328,7 +328,7 @@
               <Item
                 v-else
                 :vertical="true"
-                :label="$t('nodeInfo.pendingDelegations') + ' (LAT)'"
+                :label="$t('nodeInfo.pendingDelegations') + ' (HSK)'"
               >
                 <p>
                   <span class="Gilroy-Medium black fontSize18">{{
@@ -603,7 +603,7 @@
                 </el-table-column>
                 <el-table-column :label="$t('blockAbout.blockReward')" min-width="150">
                   <template slot-scope="scope">
-                    <span>{{ scope.row.blockReward | formatMoney }} LAT</span>
+                    <span>{{ scope.row.blockReward | formatMoney }} HSK</span>
                   </template>
                 </el-table-column>
               </el-table>
@@ -708,12 +708,12 @@
                             'actionType.' + [scope.row.type]
                           )}-扣除自有质押${scope.row.percent * 100}%(${
                             scope.row.amount
-                          } LAT)，移出验证节点列表`
+                          } HSK)，移出验证节点列表`
                         : `${$t('actionType.' + [scope.row.type])}-${
                             scope.row.percent * 100
                           }% of self-stake slashed (${
                             scope.row.amount
-                          } LAT), Remove the Validator List`
+                          } HSK), Remove the Validator List`
                     }}
                   </p>
                   <p
@@ -740,10 +740,10 @@
                             'actionType.' + [scope.row.type]
                           )}-扣除自有质押(${
                             scope.row.amount
-                          }LAT)，移出验证节点列表`
+                          }HSK)，移出验证节点列表`
                         : `${$t('actionType.' + [scope.row.type])}(${
                             scope.row.amount
-                          } LAT) from self-stake, Remove the Validator List`
+                          } HSK) from self-stake, Remove the Validator List`
                     }}
                   </p>
                   <p
@@ -916,7 +916,7 @@
           <div class="address-trade-last node-last">
             {{ $t('deleget.totalReceiveReward') }}
             <b class="limit-number" style="margin-left: 20px"
-              >{{ detailInfo.haveDeleReward | formatMoney }} LAT</b
+              >{{ detailInfo.haveDeleReward | formatMoney }} HSK</b
             >
           </div>
           <div class="table">

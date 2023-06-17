@@ -293,7 +293,7 @@
                 <span class="item-number cursor">{{ item.nodeName }}</span>
                 <p>
                   {{ $t('nodeInfo.totalStakePower') }}
-                  <a>{{ item.totalValue | formatMoney }}LAT</a>
+                  <a>{{ item.totalValue | formatMoney }}HSK</a>
                 </p>
               </div>
               <div class="list-item item-right">
@@ -322,7 +322,7 @@
                 <span class="item-number cursor">{{ item.nodeName }}</span>
                 <p>
                   {{ $t('nodeInfo.totalStakePower') }}
-                  <a>{{ item.totalValue | formatMoney }}LAT</a>
+                  <a>{{ item.totalValue | formatMoney }}HSK</a>
                 </p>
               </div>
               <div class="list-item item-right">

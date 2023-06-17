@@ -105,7 +105,7 @@
         <!-- 价值 -->
         <el-table-column :label="$t('tradeAbout.value')">
           <template slot-scope="scope">
-            <span>{{ scope.row.value | fromWei(18) | formatMoney }} LAT</span>
+            <span>{{ scope.row.value | fromWei(18) | formatMoney }} HSK</span>
           </template>
         </el-table-column>
       </el-table>

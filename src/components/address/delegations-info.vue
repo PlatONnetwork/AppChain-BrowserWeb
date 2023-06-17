@@ -5,7 +5,7 @@
         <!-- 总计委托 -->
         <li>
           <span>{{ detailInfo.delegateValue | formatMoney }}</span>
-          <p>{{ $t("contract.totalDelegated") }}(LAT)</p>
+          <p>{{ $t("contract.totalDelegated") }}(HSK)</p>
         </li>
         <li>
           <span>{{ detailInfo.candidateCount | formatMoney }}</span>
@@ -13,19 +13,19 @@
         </li>
         <li>
           <span>{{ detailInfo.delegateLocked | formatMoney }}</span>
-          <p>{{ $t("deleget.lockedDelegate") }}(LAT)</p>
+          <p>{{ $t("deleget.lockedDelegate") }}(HSK)</p>
         </li>
         <li>
           <span>{{ detailInfo.delegateHes | formatMoney }}</span>
-          <p>{{ $t("deleget.unlockedDelegate") }}(LAT)</p>
+          <p>{{ $t("deleget.unlockedDelegate") }}(HSK)</p>
         </li>
         <!-- <li>
           <span>{{ detailInfo.delegateReleased }}</span>
-          <p>{{ $t("deleget.releasedDelegate") }}(LAT)</p>
+          <p>{{ $t("deleget.releasedDelegate") }}(HSK)</p>
         </li> -->
         <!-- <li>
                       <span>{{detailInfo.delegateReduction}}</span>
-                      <p>{{$t('deleget.undelegating')}}(LAT)</p>
+                      <p>{{$t('deleget.undelegating')}}(HSK)</p>
                   </li> -->
       </ul>
     </div>

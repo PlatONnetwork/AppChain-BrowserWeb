@@ -741,17 +741,17 @@ export default {
     confirmCreate: '确认创建',
     confirmExit: '确认退出',
     invalidNetwork: '无效的网络',
-    insufficientLAT: 'LAT余额不足',
+    insufficientLAT: 'HSK余额不足',
     insufficientHSK: 'HSK余额不足'
   },
   fund: {
     title: '基金会地址',
-    totalBalance: '自由金总余额 (LAT)',
-    totalLocked: '锁仓金总余额 (LAT)',
+    totalBalance: '自由金总余额 (HSK)',
+    totalLocked: '锁仓金总余额 (HSK)',
     pageTotal: `总计 <b class="black">{0}</b> 个地址`,
     tAddress: '地址',
-    tBalance: '自由金余额 (LAT)',
-    tLockedBalance: '锁仓金余额 (LAT)'
+    tBalance: '自由金余额 (HSK)',
+    tLockedBalance: '锁仓金余额 (HSK)'
   },
   ...zhLocale
 }

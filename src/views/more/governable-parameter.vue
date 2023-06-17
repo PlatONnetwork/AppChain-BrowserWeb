@@ -16,7 +16,7 @@
               <div>
                 <span class="lable">{{ $t('more.currentValue') }}</span>
                 <span class="green"
-                  >{{ lis.staking.stakeThreshold.value | formatMoney }}LAT</span
+                  >{{ lis.staking.stakeThreshold.value | formatMoney }}HSK</span
                 >
               </div>
               <div class="progress-box">
@@ -35,7 +35,7 @@
                 <span class="black"
                   >{{
                     lis.staking.stakeThreshold.initValue | formatMoney
-                  }}LAT</span
+                  }}HSK</span
                 >
               </div>
               <div class="progress-box">
@@ -56,14 +56,14 @@
                 <span class="regular"
                   >{{
                     lis.staking.stakeThreshold.startValue | formatMoney
-                  }}LAT</span
+                  }}HSK</span
                 >
               </div>
               <div>
                 <span class="regular"
                   >{{
                     lis.staking.stakeThreshold.endValue | formatMoney
-                  }}LAT</span
+                  }}HSK</span
                 >
                 <span class="medium">{{ lis.staking.stakeThreshold.end }}</span>
               </div>
@@ -83,7 +83,7 @@
                 <span class="green"
                   >{{
                     lis.staking.operatingThreshold.value | formatMoney
-                  }}LAT</span
+                  }}HSK</span
                 >
               </div>
               <div class="progress-box">
@@ -102,7 +102,7 @@
                 <span class="black"
                   >{{
                     lis.staking.operatingThreshold.initValue | formatMoney
-                  }}LAT</span
+                  }}HSK</span
                 >
               </div>
               <div class="progress-box">
@@ -123,14 +123,14 @@
                 <span class="regular"
                   >{{
                     lis.staking.operatingThreshold.startValue | formatMoney
-                  }}LAT</span
+                  }}HSK</span
                 >
               </div>
               <div>
                 <span class="regular"
                   >{{
                     lis.staking.operatingThreshold.endValue | formatMoney
-                  }}LAT</span
+                  }}HSK</span
                 >
                 <span class="medium">{{
                   lis.staking.operatingThreshold.end
@@ -1060,7 +1060,7 @@
               <div>
                 <span class="lable">{{ $t('more.currentValue') }}</span>
                 <span class="green"
-                  >{{ lis.restricting.minimumRelease.value }}LAT</span
+                  >{{ lis.restricting.minimumRelease.value }}HSK</span
                 >
               </div>
               <div class="progress-box">
@@ -1077,7 +1077,7 @@
               <div>
                 <span class="lable">{{ $t('more.genesisValue') }}</span>
                 <span class="black"
-                  >{{ lis.restricting.minimumRelease.initValue }}LAT</span
+                  >{{ lis.restricting.minimumRelease.initValue }}HSK</span
                 >
               </div>
               <div class="progress-box">
@@ -1096,12 +1096,12 @@
                   lis.restricting.minimumRelease.start
                 }}</span>
                 <span class="regular"
-                  >{{ lis.restricting.minimumRelease.startValue }} LAT</span
+                  >{{ lis.restricting.minimumRelease.startValue }} HSK</span
                 >
               </div>
               <div>
                 <span class="regular"
-                  >{{ lis.restricting.minimumRelease.endValue }} LAT</span
+                  >{{ lis.restricting.minimumRelease.endValue }} HSK</span
                 >
                 <span class="medium">{{
                   lis.restricting.minimumRelease.end

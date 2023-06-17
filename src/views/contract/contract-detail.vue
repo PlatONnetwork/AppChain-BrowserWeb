@@ -47,7 +47,7 @@
                 }}</label>
                 <div>
                   <span class="money"
-                    >{{ detailInfo.balance | formatMoney }}&nbsp;LAT</span
+                    >{{ detailInfo.balance | formatMoney }}&nbsp;HSK</span
                   >
                 </div>
               </li>

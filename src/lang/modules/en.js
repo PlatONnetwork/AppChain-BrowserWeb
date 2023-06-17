@@ -209,7 +209,7 @@ export default {
     to: 'To',
     toA: 'Recipient',
     value: 'Value',
-    fee: 'TxFee', //(LAT)
+    fee: 'TxFee', //(HSK)
     before: 'ago',
 
     txInfo: 'Tx Info',
@@ -631,8 +631,8 @@ export default {
     governableParameter: 'GOVERNABLE PARAMETER',
     createValidateNode: 'CREATE VALIDATE NODE',
     removeValidateNode: 'Exit the Validator',
-    stakeThreshold: 'Minimum stake LATs required to create validator.',
-    operatingThreshold: 'Minimum LAT for delegation or withdrawal.',
+    stakeThreshold: 'Minimum stake HSKs required to create validator.',
+    operatingThreshold: 'Minimum HSK for delegation or withdrawal.',
     maxValidators: 'Number of alternative validators (ie active).',
     unStakeFreezeDuration: 'Number of Epochs of stake freeze(1 epoch=10750blocks).',
     unDelegateFreezeDuration:
@@ -645,7 +645,7 @@ export default {
     duplicateSignReportReward: "Reporter's reward percentage (%).",
     maxEvidenceAge: 'Number of Epochs of valid Double-signature evidence (1 epoch=10750blocks).',
     maxBlockGasLimit: 'Block Gas Limit.',
-    increaseIssuanceRatio: "PlatON network's fixed annual issuance ratio of LAT(‱).",
+    increaseIssuanceRatio: "PlatON network's fixed annual issuance ratio of HSK(‱).",
     minimumRelease: 'The minimum amount of the release period',
     currentValue: 'Current Value :',
     genesisValue: 'Genesis Value :',
@@ -752,17 +752,17 @@ export default {
     confirmCreate: 'Confirm Creation',
     confirmExit: 'Confirm Exit',
     invalidNetwork: 'Invalid Network',
-    insufficientLAT: 'Insufficient LAT Balance',
+    insufficientLAT: 'Insufficient HSK Balance',
     insufficientHSK: 'Insufficient HSK Balance'
   },
   fund: {
     title: 'Foundation Address',
-    totalBalance: 'Total Balance (LAT)',
-    totalLocked: 'Total LockupBalance (LAT)',
+    totalBalance: 'Total Balance (HSK)',
+    totalLocked: 'Total LockupBalance (HSK)',
     pageTotal: `Totally <b class="black">{0}</b> addresses`,
     tAddress: 'Address',
-    tBalance: 'Balance (LAT)',
-    tLockedBalance: 'Lockup Balance (LAT)'
+    tBalance: 'Balance (HSK)',
+    tLockedBalance: 'Lockup Balance (HSK)'
   },
   ...enLocale
 }

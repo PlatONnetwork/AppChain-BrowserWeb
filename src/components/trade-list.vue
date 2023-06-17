@@ -193,7 +193,7 @@
         <!-- 价值 -->
         <el-table-column :label="$t('tradeAbout.value')">
           <template slot-scope="scope">
-            <span>{{ scope.row.value | formatMoney }} LAT</span>
+            <span>{{ scope.row.value | formatMoney }} HSK</span>
           </template>
         </el-table-column>
 
@@ -202,7 +202,7 @@
           <!-- :label="$t('tradeAbout.fee')" prop="actualTxCost" -->
           <template slot="header">
             {{ $t('tradeAbout.fee') }}
-            <span style="color: #999999">(LAT)</span>
+            <span style="color: #999999">(HSK)</span>
           </template>
           <template slot-scope="scope">
             {{ scope.row.actualTxCost }}
