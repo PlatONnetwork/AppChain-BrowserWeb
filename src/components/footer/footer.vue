@@ -312,7 +312,7 @@ export default {
   .foot-logo {
     width: 200px;
     margin: 0 auto;
-    margin-top: 120px;
+    // margin-top: 120px;
   }
   p:nth-of-type(1) {
     font-size: 14px;

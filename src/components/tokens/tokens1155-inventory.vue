@@ -13,7 +13,7 @@
         <div class="token-pic-wrapper">
           <img
             v-pic-preview
-            :src="item.image || require('@/assets/images/Platon-cat-721.svg')"
+            :src="item.image || require('@/assets/images/hashScanLogo.svg')"
             alt="token"
             class="token-pic"
           />

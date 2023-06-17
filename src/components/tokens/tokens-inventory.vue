@@ -13,7 +13,7 @@
     <div class="inventory-box" v-loading="loading">
       <div class="box-item" v-for="item in inventory" :key="item.tokenId">
         <div class="token-pic-wrapper">
-          <img v-pic-preview :src="item.image || require('@/assets/images/Platon-cat-721.svg')" alt="token" class="token-pic" />
+          <img v-pic-preview :src="item.image || require('@/assets/images/hashScanLogo.svg')" alt="token" class="token-pic" />
         </div>
         <p class="token-id ellipsis">
           #
