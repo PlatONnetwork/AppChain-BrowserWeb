@@ -439,30 +439,30 @@ export default {
     ]),
     showedValidatorData() {
       if (this.ValidatorData.dataList.length > 8) {
-        if (this.styleEle && this.ValidatorData.isRefresh) {
+        // if (this.styleEle && this.ValidatorData.isRefresh) {
           // const index = document.styleSheets[0].cssRules.length
           // debugger
           // console.log('bbbb',this.styleEle)
 
           const index = this.isWebkit ? 2 : 0;
-          if (this.styleEle.cssRules[index]) {
-            this.styleEle.deleteRule(index);
-          }
-          this.addCSSRule(
-            this.styleEle,
-            '@keyframes nodeMove',
-            `from {
-                            transform: translate(0,${
-                              this.ValidatorData.dataList.length * -83
-                            }px);
-                        }
-                        to {
-                            transform: translate(0,0);
-                        }`,
-            index
-          );
-        }
-        return this.ValidatorData.dataList.slice(0, 8);
+          // if (this.styleEle.cssRules[index]) {
+          //   this.styleEle.deleteRule(index);
+          // }
+          // this.addCSSRule(
+          //   this.styleEle,
+          //   '@keyframes nodeMove',
+          //   `from {
+          //                   transform: translate(0,${
+          //                     this.ValidatorData.dataList.length * -83
+          //                   }px);
+          //               }
+          //               to {
+          //                   transform: translate(0,0);
+          //               }`,
+          //   index
+          // );
+        // }
+        return this.ValidatorData.dataList
       } else {
         return [];
       }
@@ -544,6 +544,7 @@ export default {
         .stakingOnIndex(param)
         .then((res) => {
           let { errMsg, code, data } = res;
+          console.log('stakingOnIndex data', data);
           this.updateValidators(data);
         })
         .catch((error) => {
