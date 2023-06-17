@@ -83,7 +83,7 @@
             <a
               class="cursor"
               @click="goNodeDetail(blockStatisticData.nodeId)"
-              >{{ blockStatisticData.nodeName }}</a
+              >{{ blockStatisticData.nodeName?blockStatisticData.nodeName:` -- ` }}</a
             >
           </li>
           <li class="statistics-odd">
