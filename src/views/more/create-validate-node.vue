@@ -165,10 +165,11 @@
 
 <script>
 import { isAddress } from '@/services/web3-utils'
-import connectMetamask from '@/components/connect/connect-metamask'
 import StakeManagerAbi from '@/config/abi/StakeManager.json'
-import { StakeManagerAddress, StakeManagerTestAddress } from '@/config/abi/address.js'
+import hrc20Abi from '@/config/abi/hrc20.json'
+import connectMetamask from '@/components/connect/connect-metamask'
 import web3 from 'web3'
+import { CHAIN_ID,  STAKEMANAGER_ADDR, HSKTOKEN_ADDR } from '@/config/platon-config'
 import { getAccounts } from '@/services/web3-tools'
 
 export default {
@@ -302,35 +303,54 @@ export default {
 
     skateForFn() {},
 
+    async approve(hrc20Contract, from) {
+      try {
+        const approveNewValue = '10000000000000000000000000000'
+        const res = await hrc20Contract.methods.approve(STAKEMANAGER_ADDR, approveNewValue).send({
+          from
+        })
+        console.log('approve res', res)
+        return Promise.resolve(res)
+      } catch (error) {
+        return Promise.reject(error)
+      }
+    },
+
     async _handleCreate() {
       this.$refs.form.validate(async valid => {
         if (valid) {
           // this.status.isSendTx = true
           if (!window.ethereum) return message.error('Please install metamask')
           const address = await getAccounts()
+
           const web3ctx = new web3(window.ethereum)
-          const myContract = new web3ctx.eth.Contract(StakeManagerAbi, StakeManagerAddress)
+          const myContract = new web3ctx.eth.Contract(StakeManagerAbi, STAKEMANAGER_ADDR)
+          const tokenContract = new web3ctx.eth.Contract(hrc20Abi, HSKTOKEN_ADDR)
           // handle stake
-          const params = {
-            owner: address,
-            desc: '',
-            blsPubkey: this.form.blsPubKey,
-            benefit: this.form.rewardReceiveAddr,
-            amount: this.form.stakingValue,
-            heimdallFee: '1', //费率，默认填1也可，填小一点
-            acceptDelegation: this.form.isAcceptDelegate,
-            signerPubkey: this.form.nodeID
+          // const params = {
+          //   owner: address,
+          //   desc: this.form.desc,
+          //   blsPubkey: '0x' + this.form.blsPubKey,
+          //   benefit: this.form.rewardReceiveAddr,
+          //   amount: Number(this.form.stakingValue),
+          //   heimdallFee: 1, //费率，默认填1也可，填小一点
+          //   acceptDelegation: this.form.isAcceptDelegate,
+          //   signerPubkey: '0x' + this.form.nodeID
+          // }
+          await this.approve(tokenContract, address)
+
+          try {
+            const tx = await myContract.methods.stakeFor(address, this.form.desc, '0x' + this.form.blsPubKey,
+              this.form.rewardReceiveAddr, web3.utils.toWei(this.form.stakingValue), web3.utils.toWei('1'), this.form.isAcceptDelegate, '0x' + this.form.nodeID).send({from: address})
+            this.status.txWaiting = true
+            if (tx?.transactionHash) {
+              this.status.txWaiting = false
+              this.status.txStatus = 'success'
+            }
+          } catch(err) {
+            this.status.txStatus = 'failed'
           }
-
-          myContract.methods.stakeFor(params).call()
-
-          console.log('myContract', myContract)
-
-          // this.status.txWaiting = true
-          // await this.sleep(3000)
-          // this.status.txWaiting = false
-          // this.status.txStatus = 'success'
-          console.log('******: ', this.form, this.status)
+          console.log('tx: ', tx)
         } else {
           return false
         }
