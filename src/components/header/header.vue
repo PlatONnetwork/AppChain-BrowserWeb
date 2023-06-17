@@ -392,11 +392,11 @@
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">
-              <span>{{ configData.headerChainName }}</span>
+              <span>{{ `HASHKEY Mainnet` }}</span>
             </template>
             <el-menu-item-group>
               <el-menu-item>
-                {{ configData.headerChainName }}
+                {{ `HASHKEY Mainnet` }}
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
