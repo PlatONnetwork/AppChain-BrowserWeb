@@ -308,11 +308,10 @@ export default {
 }
 .foot-index {
   text-align: center;
-  padding: 40px 0 31px;
+  padding: 120px 0 31px;
   .foot-logo {
     width: 200px;
     margin: 0 auto;
-    // margin-top: 120px;
   }
   p:nth-of-type(1) {
     font-size: 14px;
