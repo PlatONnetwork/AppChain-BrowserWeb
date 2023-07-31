@@ -165,6 +165,7 @@
 
 <script>
 import { isAddress } from '@/services/web3-utils'
+import { fromWei } from '@/services/utils';
 import StakeManagerAbi from '@/config/abi/StakeManager.json'
 import hrc20Abi from '@/config/abi/hrc20.json'
 import connectMetamask from '@/components/connect/connect-metamask'
@@ -303,6 +304,19 @@ export default {
 
     skateForFn() {},
 
+    async fetchAllowance(hrc20Contract, _owner, _spender, isEther = false) {
+      try {
+        const allowance = await hrc20Contract.methods.allowance(_owner, _spender).call();
+        if (isEther) {
+          const decimal = await hrc20Contract.methods.decimals().call();
+          return fromWei(allowance, decimal)
+        }
+        return Promise.resolve(allowance);
+      } catch (error) {
+        console.log('fetchAllowance', error)
+      }
+    },
+
     async approve(hrc20Contract, from) {
       try {
         const approveNewValue = '10000000000000000000000000000'
@@ -317,45 +331,48 @@ export default {
     },
 
     async _handleCreate() {
-      return
-      this.$refs.form.validate(async valid => {
-        if (valid) {
-          // this.status.isSendTx = true
-          if (!window.ethereum) return message.error('Please install metamask')
-          const address = await getAccounts()
+      const valid = await this.$refs.form.validate()
+      if (valid) {
+        if (!window.ethereum) return message.error('Please install metamask')
+        const address = await getAccounts()
 
-          const web3ctx = new web3(window.ethereum)
-          const myContract = new web3ctx.eth.Contract(StakeManagerAbi, STAKEMANAGER_ADDR)
-          const tokenContract = new web3ctx.eth.Contract(hrc20Abi, HSKTOKEN_ADDR)
-          // handle stake
-          // const params = {
-          //   owner: address,
-          //   desc: this.form.desc,
-          //   blsPubkey: '0x' + this.form.blsPubKey,
-          //   benefit: this.form.rewardReceiveAddr,
-          //   amount: Number(this.form.stakingValue),
-          //   heimdallFee: 1, //费率，默认填1也可，填小一点
-          //   acceptDelegation: this.form.isAcceptDelegate,
-          //   signerPubkey: '0x' + this.form.nodeID
-          // }
+        const web3ctx = new web3(window.ethereum)
+        const myContract = new web3ctx.eth.Contract(StakeManagerAbi, STAKEMANAGER_ADDR)
+        const tokenContract = new web3ctx.eth.Contract(hrc20Abi, HSKTOKEN_ADDR)
+        // handle stake
+        // const params = {
+        //   owner: address,
+        //   desc: this.form.desc,
+        //   blsPubkey: '0x' + this.form.blsPubKey,
+        //   benefit: this.form.rewardReceiveAddr,
+        //   amount: Number(this.form.stakingValue),
+        //   heimdallFee: 1, //费率，默认填1也可，填小一点
+        //   acceptDelegation: this.form.isAcceptDelegate,
+        //   signerPubkey: '0x' + this.form.nodeID
+        // }
+        const allowance = await this.fetchAllowance(tokenContract, address, STAKEMANAGER_ADDR, true)
+        if (Number(allowance) < Number(this.form.stakingValue)) {
           await this.approve(tokenContract, address)
-
-          try {
-            const tx = await myContract.methods.stakeFor(address, this.form.desc, '0x' + this.form.blsPubKey,
-              this.form.rewardReceiveAddr, web3.utils.toWei(this.form.stakingValue), web3.utils.toWei('1'), this.form.isAcceptDelegate, '0x' + this.form.nodeID).send({from: address})
-            this.status.txWaiting = true
-            if (tx?.transactionHash) {
-              this.status.txWaiting = false
-              this.status.txStatus = 'success'
-            }
-          } catch(err) {
-            this.status.txStatus = 'failed'
-          }
-          console.log('tx: ', tx)
-        } else {
-          return false
         }
-      })
+
+        try {
+          this.status.isSendTx = true
+          this.status.txWaiting = true
+          const tx = await myContract.methods.stakeFor(address, this.form.desc, '0x' + this.form.blsPubKey,
+            this.form.rewardReceiveAddr, web3.utils.toWei(this.form.stakingValue), web3.utils.toWei('1'), this.form.isAcceptDelegate, '0x' + this.form.nodeID).send({from: address})
+          console.log('tx: ', tx)
+          if (tx?.transactionHash) {
+            this.status.txWaiting = false
+            this.status.txStatus = 'success'
+          }
+        } catch(err) {
+          console.log("Transaction error: ", err)
+          this.status.txWaiting = false
+          this.status.txStatus = 'failed'
+        }
+      } else {
+        return false
+      }
     }
   }
 }
