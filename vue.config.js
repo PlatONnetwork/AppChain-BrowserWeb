@@ -1,5 +1,6 @@
 module.exports = {
   // 暂时关闭eslint
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
   lintOnSave: false,
   productionSourceMap: process.env.NODE_ENV === 'development',
   devServer: {
@@ -20,5 +21,5 @@ module.exports = {
       }
     }
   },
-  transpileDependencies: ['vue-particles']
+  transpileDependencies: [ 'vue-particles' ]
 }
