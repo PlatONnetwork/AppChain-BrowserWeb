@@ -180,7 +180,7 @@
       <el-dropdown placement="bottom-start" @visible-change="netVisibleChange">
         <span class="el-dropdown-link">
           <!-- {{ configData.headerChainName }} -->
-          {{ `HASHKEY Mainnet` }}
+          {{ `AppChain Mainnet` }}
           <i
             :class="{
               arrowDown: netDropdownShow == false,
@@ -191,7 +191,7 @@
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
-            {{ `HASHKEY Mainnet` }}
+            {{ `AppChain Mainnet` }}
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -392,11 +392,11 @@
           </el-submenu>
           <el-submenu index="4">
             <template slot="title">
-              <span>{{ `HASHKEY Mainnet` }}</span>
+              <span>{{ `AppChain Mainnet` }}</span>
             </template>
             <el-menu-item-group>
               <el-menu-item>
-                {{ `HASHKEY Mainnet` }}
+                {{ `AppChain Mainnet` }}
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>

@@ -1,8 +1,8 @@
 {
-  "name": "hashkey",
+  "name": "AppChain",
   "version": "1.0.0",
   "description": "AppChain",
-  "author": "hashkey",
+  "author": "AppChain",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",

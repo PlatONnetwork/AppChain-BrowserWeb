@@ -21,7 +21,7 @@
     ></vue-particles>
     <div class="welcome-wrap">
       <h3>
-        {{ $t('indexInfo.WelcomeToPlatON', { chain: `HASHKEY` }) }}
+        {{ $t('indexInfo.WelcomeToPlatON', { chain: `AppChain` }) }}
       </h3>
       <div class="search search-index" :class="{ 'search-active': isFocus, 'search-hide': !hideSearch }">
         <el-input

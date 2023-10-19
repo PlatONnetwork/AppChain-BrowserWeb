@@ -25,11 +25,11 @@ export default {
     placeHolder: 'Search by Address/BlockHeight/BlockHash/TxHash'
   },
   footer: {
-    desc: 'HASHKEYScan is a Block Explorer and Analytics Platform for HASHKEY',
+    desc: 'AppChainScan is a Block Explorer and Analytics Platform for AppChain',
     links: 'Links',
     help: 'Help',
     wallet: 'Wallet',
-    officialWebsite: 'HASHKEY Official Website',
+    officialWebsite: 'AppChain Official Website',
     whitePaper: 'White Paper',
     community: 'Community'
   },
@@ -447,8 +447,8 @@ export default {
     searchno: 'Search no results!',
 
     resource: 'RESOURCE',
-    aboutPlatON: 'About HASHKEY',
-    platONWhitePaper: 'HASHKEY White Paper',
+    aboutPlatON: 'About AppChain',
+    platONWhitePaper: 'AppChain White Paper',
     atonDownload: 'ATON Download',
     developer: 'Developer',
     platScan: '{siteName} is a Block Explorer and Analytics Platform for {chain}',
@@ -645,7 +645,7 @@ export default {
     duplicateSignReportReward: "Reporter's reward percentage (%).",
     maxEvidenceAge: 'Number of Epochs of valid Double-signature evidence (1 epoch=10750blocks).',
     maxBlockGasLimit: 'Block Gas Limit.',
-    increaseIssuanceRatio: "HASHKEY network's fixed annual issuance ratio of HSK(‱).",
+    increaseIssuanceRatio: "AppChain network's fixed annual issuance ratio of HSK(‱).",
     minimumRelease: 'The minimum amount of the release period',
     currentValue: 'Current Value :',
     genesisValue: 'Genesis Value :',

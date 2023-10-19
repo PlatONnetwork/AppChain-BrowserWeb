@@ -1,4 +1,4 @@
-# HashKey Browser
+# AppChain Browser
 
 ## start
 

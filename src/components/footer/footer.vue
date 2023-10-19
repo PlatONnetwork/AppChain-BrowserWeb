@@ -17,8 +17,8 @@
       <p>
         {{
           $t('indexInfo.platScan', {
-            siteName: ` HASHKEYSCAN `,
-            chain: ` HASHKEY `
+            siteName: ` AppChainScan `,
+            chain: ` AppChain `
           })
         }}
       </p>
@@ -26,7 +26,7 @@
         {{
           $t('indexInfo.international', {
             year: curYear,
-            copyRight: `HASHKEY`
+            copyRight: `AppChain`
           })
         }}
       </p>
@@ -84,12 +84,13 @@
     </div>
     <div class="foot-no-index foot-index" v-if="path != '/' && configData.social">
       <div class="foot-left">
-        <img src="@/assets/images/hashScanLogo.svg" style="width: 82px; height: 30px" alt="" class="foot-logo" />
+        <img src="@/assets/images/hashScanLogo.svg" style="width: 82px; height: 30px" alt=""
+          class="foot-logo" />
         <p>
           {{
             $t('indexInfo.platScan', {
-              siteName: ` HASHKEYSCAN `,
-              chain: ` HASHKEY `
+              siteName: ` AppChainScan `,
+              chain: ` AppChain `
             })
           }}
         </p>
@@ -149,7 +150,7 @@
           {{
             $t('indexInfo.international', {
               year: curYear,
-              copyRight: `HASHKEY`
+              copyRight: `AppChain`
             })
           }}
         </p>
@@ -170,7 +171,7 @@ export default {
   },
   props: {},
   computed: {
-    ...mapGetters(['configData']),
+    ...mapGetters([ 'configData' ]),
     lang() {
       return this.$i18n.locale.indexOf('zh') !== -1 ? 'zh' : 'en'
     },
@@ -192,7 +193,7 @@ export default {
   created() {
     this.path = this.$route.path
   },
-  mounted() {}
+  mounted() { }
 }
 </script>
 <style lang="less" scoped>
@@ -207,10 +208,12 @@ export default {
     padding: 0 20px;
   }
 }
+
 .sub-foot {
   text-align: center;
   // padding-bottom: 83px;
   padding-top: 120px;
+
   h3 {
     margin: 0px 0 78px;
     font-size: 40px;
@@ -219,14 +222,17 @@ export default {
     line-height: 47px;
     text-align: center;
   }
+
   .foot-line {
     height: 0;
     border-bottom: 1px dashed #929292;
     margin: 83px 5.2% 0;
   }
+
   .foot-tabs {
     display: flex;
     justify-content: center;
+
     span {
       background: #000;
       margin: 0 4%;
@@ -237,13 +243,16 @@ export default {
       border-radius: 4px;
       display: block;
       font-size: 20px;
+
       a {
         display: block;
         color: #fff;
       }
+
       &.hanim:hover {
         background: #fff;
         border: 1px solid #fff;
+
         a {
           color: #000;
           -webkit-animation-duration: 0.75s;
@@ -254,23 +263,29 @@ export default {
       }
     }
   }
+
   @media (max-width: 750px) {
     padding-top: 100px;
+
     h3 {
       margin-bottom: 92px;
     }
+
     .foot-line {
       margin: 50px 0 0 0;
       border-style: dotted;
     }
+
     .foot-tabs {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+
       span {
         margin-right: 0;
         margin-bottom: 50px;
         width: 45%;
+
         a {
           width: 100%;
           line-height: 48px;
@@ -281,17 +296,21 @@ export default {
 
   @media (max-width: 500px) {
     padding-top: 50px;
+
     h3 {
       margin-bottom: 46px;
     }
+
     .foot-line {
       margin: 25px 0 0 0;
       border-style: dotted;
     }
+
     .foot-tabs {
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
+
       span {
         margin-right: 0;
         margin-bottom: 25px;
@@ -306,23 +325,28 @@ export default {
     }
   }
 }
+
 .foot-index {
   text-align: center;
   padding: 120px 0 31px;
+
   .foot-logo {
     width: 200px;
     margin: 0 auto;
   }
+
   p:nth-of-type(1) {
     font-size: 14px;
     color: #999999;
     margin: 20px 0;
   }
+
   p:nth-of-type(2) {
     font-size: 12px;
     color: #777777;
     margin-bottom: 25px;
   }
+
   .link-wrap {
     display: flex;
     justify-content: center;
@@ -330,24 +354,30 @@ export default {
     margin: 0 auto;
     padding-top: 10px;
     border-top: 1px dashed #555;
+
     .link-br {
       display: none;
     }
+
     a {
       // margin-right: 6px;
       width: 50px;
       height: 50px;
       background: url(../../assets/images/footer-link-init.svg);
       background-position-y: 0;
+
       &.link-1 {
         background-position-x: 0;
       }
+
       &.link-2 {
         position: relative;
         background-position-x: -50px;
+
         &:hover .wx-img {
           display: block;
         }
+
         .wx-img {
           position: absolute;
           width: 100px;
@@ -357,65 +387,83 @@ export default {
           display: none;
         }
       }
+
       &.link-3 {
         background-position-x: -100px;
       }
+
       &.link-4 {
         background-position-x: -150px;
       }
+
       &.link-5 {
         background-position-x: -200px;
       }
+
       &.link-6 {
         background-position-x: -250px;
       }
+
       &.link-7 {
         background-position-x: -300px;
       }
+
       &.link-8 {
         background-position-x: -350px;
       }
+
       &.link-9 {
         background-position-x: -400px;
       }
+
       &.link-10 {
         background-position-x: -449px;
       }
+
       &:hover {
         background-image: url(../../assets/images/footer-link-active.svg);
       }
     }
   }
+
   &.foot-no-index {
     display: flex;
     justify-content: space-between;
     padding: 17px 5.2% 10px;
+
     @media screen and (max-width: 1280px) {
       & {
         padding: 27px 0 10px;
       }
     }
+
     a.link-10 {
       margin-right: 0;
     }
+
     .foot-left {
       width: 40%;
       text-align: left;
       margin-top: 10px;
+
       .foot-logo {
         margin-left: 0;
         width: 82px;
         height: 30px;
       }
+
       p {
         color: #929292;
       }
+
       .copy-right {
         display: none;
       }
     }
+
     .foot-right {
       width: 50%;
+
       p {
         font-size: 12px;
         text-align: right;
@@ -425,12 +473,14 @@ export default {
         color: #777777;
       }
     }
+
     .link-wrap {
       width: 100%;
       padding-top: 0;
       border: none;
       justify-content: flex-end;
     }
+
     p {
       margin-top: 14px;
     }
@@ -439,24 +489,29 @@ export default {
   @media (max-width: 750px) {
     padding: 80px 0 40px;
     width: 100%;
+
     .foot-logo {
       width: 100px;
       margin-bottom: 10px;
     }
+
     p:nth-of-type(1) {
       margin: 40px 0;
       font-size: 24px;
     }
+
     p:nth-of-type(2) {
       margin-bottom: 55px;
       font-size: 22px;
     }
+
     .link-wrap {
       border-style: dotted;
       padding-top: 20px;
       flex-wrap: wrap;
       width: 100%;
       justify-content: space-around;
+
       .link-br {
         display: block;
         width: 100%;
@@ -471,26 +526,32 @@ export default {
         width: 100%;
         margin-top: 0;
         text-align: center;
+
         .foot-logo {
           width: 100px;
           height: auto;
           margin: auto;
         }
+
         .copy-right {
           display: block;
         }
       }
+
       .foot-right {
         width: 100%;
+
         .copy-right {
           display: none;
         }
+
         .link-wrap {
           justify-content: space-around;
           flex-wrap: wrap;
           border-top: 1px dotted #555;
           padding-top: 20px;
         }
+
         p {
           text-align: center;
           margin: 20px 0 0;
@@ -498,26 +559,32 @@ export default {
       }
     }
   }
+
   @media (max-width: 500px) {
     padding: 40px 0 20px;
+
     .foot-logo {
       width: 100px;
       margin-bottom: 10px;
     }
+
     p:nth-of-type(1) {
       margin: 20px 0;
       font-size: 20px;
     }
+
     p:nth-of-type(2) {
       margin-bottom: 35px;
       font-size: 18px;
     }
+
     .link-wrap {
       border-style: dotted;
       padding-top: 10px;
       flex-wrap: wrap;
       width: 100%;
       justify-content: space-around;
+
       .link-br {
         display: block;
         width: 100%;
@@ -532,20 +599,25 @@ export default {
         width: 100%;
         margin-top: 0;
         text-align: center;
+
         .foot-logo {
           width: 100px;
           height: auto;
           margin: auto;
         }
+
         .copy-right {
           display: block;
         }
       }
+
       .foot-right {
         width: 100%;
+
         .copy-right {
           display: none;
         }
+
         .link-wrap {
           justify-content: space-around;
           flex-wrap: wrap;
@@ -556,6 +628,7 @@ export default {
     }
   }
 }
+
 // .bounceIn {
 //     -webkit-animation-duration: 0.75s;
 //     animation-duration: 0.75s;
@@ -565,6 +638,7 @@ export default {
 </style>
 <style lang="less">
 @keyframes bounceIn {
+
   from,
   20%,
   40%,
@@ -608,11 +682,13 @@ export default {
     transform: scale3d(1, 1, 1);
   }
 }
+
 .sub-foot .tabs .el-button {
   background: #000;
   position: relative;
   margin-right: 8%;
   padding: 0;
+
   &:hover {
     // .bounceIn{
     //     -webkit-animation-duration: 0.75s;
@@ -621,6 +697,7 @@ export default {
     //     animation-name: bounceIn;
     // }
     background: #fff;
+
     a {
       color: #000;
       //  -webkit-animation-fill-mode: both;
@@ -631,6 +708,7 @@ export default {
       animation-name: bounceIn;
     }
   }
+
   span {
     display: block;
     width: 100%;
@@ -640,9 +718,9 @@ export default {
     // width: 100%;
     // z-index: 9999;
   }
+
   a {
     display: block;
     color: #fff;
   }
-}
-</style>
+}</style>
