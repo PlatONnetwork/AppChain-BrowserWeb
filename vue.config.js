@@ -1,6 +1,6 @@
 module.exports = {
   // 暂时关闭eslint
-  publicPath: process.env.NODE_ENV === 'production' ? './' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? process.env.VUE_APP_BASE_URL : "/",
   lintOnSave: false,
   productionSourceMap: process.env.NODE_ENV === 'development',
   devServer: {
@@ -11,7 +11,7 @@ module.exports = {
       '/apis': {
         // target: 'http://192.168.120.150:40000',
         // target: "https://devnet2scan.platon.network",
-        target: 'http://47.241.95.207',
+        target: 'http://192.168.9.222:32868',
         secure: false,
         ws: true,
         changeOrigin: true,

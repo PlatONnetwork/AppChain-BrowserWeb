@@ -14,6 +14,7 @@ import { governableParameter, foundationAddress, addToExtension, createValidateN
 Vue.use(Router)
 export default new Router({
   mode: 'history',
+  base: process.env.VUE_APP_BASE_URL,
   routes: [
     Index, // 主页
     tradeList,

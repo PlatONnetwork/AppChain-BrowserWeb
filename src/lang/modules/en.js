@@ -683,7 +683,7 @@ export default {
     To be more specific, Tokens Locked refers to all tokens in the lockup status, covering staked or delegated tokens;
     Tokens in the Incentive Pool includes tokens in the incentive pool contract and unclaimed staking rewards (tokens).`,
     totalSupply: `The number of tokens that have been created minus the number of tokens that have been burned.<br />
-    Total Supply = <img style="display:inline-block; height: 14px;" src="/static/images/total-supply.svg" /><br />
+    Total Supply = <img style="display:inline-block; height: 14px;" src="${process.env.VUE_APP_BASE_URL}/static/images/total-supply.svg" /><br />
     Where W is the initial issued amount of 10 billion, n is the serial number of the current issuance cycle, 1 is the starting serial number of the genesis block, and a% is the additional issuance ratio, which is at 2.5% currently.`,
     totalStakePower: `The number of tokens staked, including the tokens staked by nodes and total delegations.<br />
     Total Stakes = Balance of the Staking Contract Address (lat1zqqqqqqqqqqqqqqqqqqqqqqqqqqqqqqzsjx8h7)`,

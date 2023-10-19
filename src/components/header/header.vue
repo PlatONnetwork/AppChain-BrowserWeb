@@ -213,7 +213,7 @@
         </el-dropdown-menu>
       </el-dropdown>
       <span class="mobile-menu-btn">
-        <img src="/static/images/icon_menu.svg" @click="toggleMobileMenuOpenend" />
+        <img src="static/images/icon_menu.svg" @click="toggleMobileMenuOpenend" />
       </span>
     </div>
     <div
@@ -699,7 +699,7 @@ export default {
   //生命周期函数
   created() {
     this.language = this.$i18n.locale.indexOf('zh') !== -1 ? 'zh-cn' : 'en'
-    this.getConfig()
+    //this.getConfig()
   },
   mounted() {}
 }
