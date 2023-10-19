@@ -37,7 +37,7 @@
               <i class="address-icon"></i>
             </el-tooltip>
           </label>
-          <div class="money">{{ balance | formatMoney }}&nbsp;HSK</div>
+          <div class="money">{{ balance | formatMoney }}&nbsp;</div>
         </li>
       </ul>
     </div>
@@ -57,7 +57,7 @@
         </el-table-column>
         <el-table-column :label="$t('contract.thawAmount')" width="240">
           <template slot-scope="scope">
-            <span>{{ scope.row.lock | formatMoney }}&nbsp; HSK</span>
+            <span>{{ scope.row.lock | formatMoney }}&nbsp; </span>
           </template>
         </el-table-column>
       </el-table>

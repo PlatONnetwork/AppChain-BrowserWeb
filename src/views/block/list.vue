@@ -86,10 +86,10 @@
             </template>
           </el-table-column>
           <el-table-column width="200">
-            <!-- :label="$t('blockAbout.blockReward')+'(HSK)'" -->
+            <!-- :label="$t('blockAbout.blockReward')+'()'" -->
             <template slot="header">
               {{ $t('blockAbout.blockReward') }}
-              <span style="color: #999999">(HSK)</span>
+              <span style="color: #999999">()</span>
             </template>
             <template slot-scope="scope">
               <span>{{ scope.row.blockReward | formatMoney }}</span>

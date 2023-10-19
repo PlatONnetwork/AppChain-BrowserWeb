@@ -1,60 +1,35 @@
 <template>
   <div class="header-wrap">
     <div class="logo cursor" @click="goIndex">
-      <template v-if="configData.siteName === 'PlatScan'">
-        <!-- <img class="icon1" src="@/assets/images/herder-logo-a.svg" /> -->
-        <img class="icon2" src="@/assets/images/hashScanLogo.svg" />
-        <!-- <p class="text">The PlatON Blockchain Explorer</p> -->
-      </template>
-      <img v-else class="iconAlaya" :src="logoURL" alt="SCAN" title="SCAN" />
+      <img class="icon2" src="@/assets/images/hashChainLogo.svg" />
     </div>
     <div class="menu">
-      <el-menu
-        :default-active="$route.path"
-        :router="true"
-        class="el-menu-demo"
-        mode="horizontal"
-        background-color="transparent"
-        text-color="#999"
-        active-text-color="#FFF"
-      >
+      <el-menu :default-active="$route.path" :router="true" class="el-menu-demo" mode="horizontal"
+        background-color="transparent" text-color="#999" active-text-color="#FFF">
         <el-menu-item index="/" :class="{ active: $route.path == '/' }">
           <span>{{ $t('menu.home') }}</span>
         </el-menu-item>
-        <el-menu-item
-          index="/node"
-          :class="{
-            active: $route.path.indexOf('node') > -1
-          }"
-        >
+        <el-menu-item index="/node" :class="{
+          active: $route.path.indexOf('node') > -1
+        }">
           <span>{{ $t('menu.validator') }}</span>
         </el-menu-item>
 
         <el-menu-item class="more-item">
           <!-- index="/governable-parameter" -->
-          <el-dropdown
-            placement="bottom-start"
-            class="more-dropdown"
-            @command="dropdownCommand"
-            @visible-change="blockDropdownChangHandle"
-          >
-            <span
-              class="el-dropdown-link more-title"
-              :class="{
-                active:
-                  $route.path.indexOf('block') > -1 ||
-                  $route.path.indexOf('trade') > -1 ||
-                  $route.path.indexOf('/address') > -1
-              }"
-            >
+          <el-dropdown placement="bottom-start" class="more-dropdown" @command="dropdownCommand"
+            @visible-change="blockDropdownChangHandle">
+            <span class="el-dropdown-link more-title" :class="{
+              active:
+                $route.path.indexOf('block') > -1 ||
+                $route.path.indexOf('trade') > -1 ||
+                $route.path.indexOf('/address') > -1
+            }">
               {{ $t('menu.blockChain') }}
-              <i
-                :class="{
-                  arrowDown: blockDropdownShow == false,
-                  arrowUp: blockDropdownShow == true
-                }"
-                class="arrow el-icon-arrow-down arrowUp"
-              ></i>
+              <i :class="{
+                arrowDown: blockDropdownShow == false,
+                arrowUp: blockDropdownShow == true
+              }" class="arrow el-icon-arrow-down arrowUp"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="/block/index">{{ $t('menu.block') }}</el-dropdown-item>
@@ -64,37 +39,31 @@
         </el-menu-item>
         <el-menu-item class="more-item">
           <!-- index="/governable-parameter" -->
-          <el-dropdown
-            placement="bottom-start"
-            class="more-dropdown"
-            @command="dropdownCommand"
-            @visible-change="tokensDropdownChangHandle"
-          >
-            <span
-              class="el-dropdown-link more-title"
-              :class="{
-                active: $route.path.indexOf('tokens') > -1
-              }"
-            >
+          <el-dropdown placement="bottom-start" class="more-dropdown" @command="dropdownCommand"
+            @visible-change="tokensDropdownChangHandle">
+            <span class="el-dropdown-link more-title" :class="{
+              active: $route.path.indexOf('tokens') > -1
+            }">
               {{ $t('menu.tokens') }}
-              <i
-                :class="{
-                  arrowDown: tokensDropdownShow == false,
-                  arrowUp: tokensDropdownShow == true
-                }"
-                class="arrow el-icon-arrow-down arrowUp"
-              ></i>
+              <i :class="{
+                arrowDown: tokensDropdownShow == false,
+                arrowUp: tokensDropdownShow == true
+              }" class="arrow el-icon-arrow-down arrowUp"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
-              <el-dropdown-item command="/tokens/tokensList/prc20">{{ $t('menu.erc20Tokens') }}</el-dropdown-item>
-              <el-dropdown-item command="/tokens/tokensTranfer/prc20">{{ $t('menu.erc20Transfer') }}</el-dropdown-item>
+              <el-dropdown-item command="/tokens/tokensList/prc20">{{ $t('menu.erc20Tokens')
+              }}</el-dropdown-item>
+              <el-dropdown-item command="/tokens/tokensTranfer/prc20">{{ $t('menu.erc20Transfer')
+              }}</el-dropdown-item>
               <div class="dividing-line"></div>
-              <el-dropdown-item command="/tokens/tokensList/prc721">{{ $t('menu.erc721Tokens') }}</el-dropdown-item>
+              <el-dropdown-item command="/tokens/tokensList/prc721">{{ $t('menu.erc721Tokens')
+              }}</el-dropdown-item>
               <el-dropdown-item command="/tokens/tokensTranfer/prc721">
                 {{ $t('menu.erc721Transfer') }}
               </el-dropdown-item>
               <div class="dividing-line"></div>
-              <el-dropdown-item command="/tokens/tokensList/prc1155">{{ $t('menu.erc1155Tokens') }}</el-dropdown-item>
+              <el-dropdown-item command="/tokens/tokensList/prc1155">{{ $t('menu.erc1155Tokens')
+              }}</el-dropdown-item>
               <el-dropdown-item command="/tokens/tokensTranfer/prc1155">
                 {{ $t('menu.erc1155Transfer') }}
               </el-dropdown-item>
@@ -109,70 +78,51 @@
         </el-menu-item> -->
         <el-menu-item class="more-item">
           <!-- index="/governable-parameter" -->
-          <el-dropdown
-            placement="bottom-start"
-            class="more-dropdown"
-            @command="dropdownCommand"
-            @visible-change="moreDropdownChangHandle"
-          >
-            <span
-              class="el-dropdown-link more-title"
-              :class="{
-                active: [
-                  '/proposal',
-                  '/governable-parameter',
-                  '/foundation-address',
-                  '/add-to-extension',
-                  '/create-validate-node',
-                  '/remove-validate-node'
-                ].includes($route.path)
-              }"
-            >
+          <el-dropdown placement="bottom-start" class="more-dropdown" @command="dropdownCommand"
+            @visible-change="moreDropdownChangHandle">
+            <span class="el-dropdown-link more-title" :class="{
+              active: [
+                '/proposal',
+                '/governable-parameter',
+                '/foundation-address',
+                '/add-to-extension',
+                '/create-validate-node',
+                '/remove-validate-node'
+              ].includes($route.path)
+            }">
               {{ $t('menu.more') }}
-              <i
-                :class="{
-                  arrowDown: moreDropdownShow == false,
-                  arrowUp: moreDropdownShow == true
-                }"
-                class="arrow el-icon-arrow-down arrowUp"
-              ></i>
+              <i :class="{
+                arrowDown: moreDropdownShow == false,
+                arrowUp: moreDropdownShow == true
+              }" class="arrow el-icon-arrow-down arrowUp"></i>
             </span>
             <el-dropdown-menu slot="dropdown">
               <el-dropdown-item command="/proposal">{{ $t('menu.proposal') }}</el-dropdown-item>
-              <el-dropdown-item command="/governable-parameter">{{ $t('more.governableParameter') }}</el-dropdown-item>
-              <el-dropdown-item command="/foundation-address">{{ $t('more.foundationAddress') }}</el-dropdown-item>
-              <el-dropdown-item command="/add-to-extension">{{ $t('more.addToExtension') }}</el-dropdown-item>
-              <el-dropdown-item command="/create-validate-node">{{ $t('more.createValidateNode') }}</el-dropdown-item>
-              <el-dropdown-item command="/remove-validate-node">{{ $t('more.removeValidateNode') }}</el-dropdown-item>
+              <el-dropdown-item command="/governable-parameter">{{ $t('more.governableParameter')
+              }}</el-dropdown-item>
+              <el-dropdown-item command="/foundation-address">{{ $t('more.foundationAddress')
+              }}</el-dropdown-item>
+              <el-dropdown-item command="/add-to-extension">{{ $t('more.addToExtension')
+              }}</el-dropdown-item>
+              <!-- <el-dropdown-item command="/create-validate-node">{{ $t('more.createValidateNode')
+              }}</el-dropdown-item>
+              <el-dropdown-item command="/remove-validate-node">{{ $t('more.removeValidateNode')
+              }}</el-dropdown-item> -->
             </el-dropdown-menu>
           </el-dropdown>
         </el-menu-item>
       </el-menu>
     </div>
     <div style="flex: 1"></div>
-    <div
-      class="search search-header"
-      :class="{
-        'search-active': isFocus,
-        'search-hide': !hideSearch || $route.path != '/'
-      }"
-      v-if="windowWidth >= 750"
-    >
-      <el-input
-        :placeholder="$t('search.placeHolder')"
-        @focus="isFocus = true"
-        @blur="isFocus = false"
-        v-model="searchKey"
-        @keyup.enter.native="searchFn"
-        size="mini"
-      ></el-input>
-      <el-button
-        type="primary"
-        class="btn-header el-searchs"
-        :class="{ 'search-btn-active': isFocus }"
-        @click="searchFn"
-        :disabled="disabledBtn"
-      >
+    <div class="search search-header" :class="{
+      'search-active': isFocus,
+      'search-hide': !hideSearch || $route.path != '/'
+    }" v-if="windowWidth >= 750">
+      <el-input :placeholder="$t('search.placeHolder')" @focus="isFocus = true"
+        @blur="isFocus = false" v-model="searchKey" @keyup.enter.native="searchFn"
+        size="mini"></el-input>
+      <el-button type="primary" class="btn-header el-searchs"
+        :class="{ 'search-btn-active': isFocus }" @click="searchFn" :disabled="disabledBtn">
         {{ $t('search.searchBtn') }}
       </el-button>
     </div>
@@ -181,13 +131,10 @@
         <span class="el-dropdown-link">
           <!-- {{ configData.headerChainName }} -->
           {{ `AppChain Mainnet` }}
-          <i
-            :class="{
-              arrowDown: netDropdownShow == false,
-              arrowUp: netDropdownShow == true
-            }"
-            class="arrow el-icon-arrow-down arrowUp"
-          ></i>
+          <i :class="{
+            arrowDown: netDropdownShow == false,
+            arrowUp: netDropdownShow == true
+          }" class="arrow el-icon-arrow-down arrowUp"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
@@ -195,16 +142,14 @@
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
-      <el-dropdown @command="handleCommandLangage" placement="bottom-start" @visible-change="LangVisibleChange">
+      <el-dropdown @command="handleCommandLangage" placement="bottom-start"
+        @visible-change="LangVisibleChange">
         <span class="el-dropdown-link">
           {{ languageObj[language] == '简体中文' ? '简体中文' : 'English' }}
-          <i
-            :class="{
-              arrowDown: langDropdownShow == false,
-              arrowUp: langDropdownShow == true
-            }"
-            class="arrow el-icon-arrow-down arrowUp"
-          ></i>
+          <i :class="{
+            arrowDown: langDropdownShow == false,
+            arrowUp: langDropdownShow == true
+          }" class="arrow el-icon-arrow-down arrowUp"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item v-for="(item, index) in options" :key="index" :command="item.value">
@@ -216,52 +161,29 @@
         <img src="static/images/icon_menu.svg" @click="toggleMobileMenuOpenend" />
       </span>
     </div>
-    <div
-      class="search search-header mobile-search"
-      :class="{
-        'search-active': isFocus
-      }"
-      v-if="windowWidth < 750 && $route.path != '/'"
-    >
-      <el-input
-        :placeholder="$t('search.placeHolder')"
-        @focus="isFocus = true"
-        @blur="isFocus = false"
-        v-model="searchKey"
-        @keyup.enter.native="searchFn"
-        size="mini"
-      ></el-input>
-      <el-button
-        type="primary"
-        class="btn-header el-searchs"
-        :class="{ 'search-btn-active': isFocus }"
-        @click="searchFn"
-        :disabled="disabledBtn"
-      >
+    <div class="search search-header mobile-search" :class="{
+      'search-active': isFocus
+    }" v-if="windowWidth < 750 && $route.path != '/'">
+      <el-input :placeholder="$t('search.placeHolder')" @focus="isFocus = true"
+        @blur="isFocus = false" v-model="searchKey" @keyup.enter.native="searchFn"
+        size="mini"></el-input>
+      <el-button type="primary" class="btn-header el-searchs"
+        :class="{ 'search-btn-active': isFocus }" @click="searchFn" :disabled="disabledBtn">
         {{ $t('search.searchBtn') }}
       </el-button>
     </div>
     <div :class="{ mobileMenuWrapper: true, opened: mobileMenuOpenend }" v-if="windowWidth < 750">
       <div class="mobile-menu-back" @click="toggleMobileMenuOpenend"></div>
       <div class="mobile-menu-content">
-        <el-menu
-          :default-active="$route.pth"
-          :router="true"
-          class="mobile-menu"
-          background-color="#FFF"
-          text-color="#121f38"
-          active-text-color="#121f38"
-        >
-          <el-menu-item @click="toggleMobileMenuOpenend" index="/" :class="{ active: $route.path == '/' }">
+        <el-menu :default-active="$route.pth" :router="true" class="mobile-menu"
+          background-color="#FFF" text-color="#121f38" active-text-color="#121f38">
+          <el-menu-item @click="toggleMobileMenuOpenend" index="/"
+            :class="{ active: $route.path == '/' }">
             <router-link to="/">{{ $t('menu.home') }}</router-link>
           </el-menu-item>
-          <el-menu-item
-            @click="toggleMobileMenuOpenend"
-            index="/node"
-            :class="{
-              active: $route.path.indexOf('node') > -1
-            }"
-          >
+          <el-menu-item @click="toggleMobileMenuOpenend" index="/node" :class="{
+            active: $route.path.indexOf('node') > -1
+          }">
             <router-link to="/node">{{ $t('menu.validator') }}</router-link>
           </el-menu-item>
           <el-submenu index="1">
@@ -269,18 +191,12 @@
               <span>{{ $t('menu.blockChain') }}</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item
-                index="/block/index"
-                @click="toggleMobileMenuOpenend"
-                :class="{ active: $route.path == '/block/index' }"
-              >
+              <el-menu-item index="/block/index" @click="toggleMobileMenuOpenend"
+                :class="{ active: $route.path == '/block/index' }">
                 <router-link to="/block/index">{{ $t('menu.block') }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                index="/block/trade"
-                @click="toggleMobileMenuOpenend"
-                :class="{ active: $route.path == '/block/trade' }"
-              >
+              <el-menu-item index="/block/trade" @click="toggleMobileMenuOpenend"
+                :class="{ active: $route.path == '/block/trade' }">
                 <router-link to="/block/trade">{{ $t('menu.transaction') }}</router-link>
               </el-menu-item>
             </el-menu-item-group>
@@ -290,54 +206,41 @@
               <span>{{ $t('menu.tokens') }}</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item
-                index="/tokens/tokensList/prc20"
-                @click="toggleMobileMenuOpenend"
-                :class="{ active: $route.path == '/tokens/tokensList/prc20' }"
-              >
+              <el-menu-item index="/tokens/tokensList/prc20" @click="toggleMobileMenuOpenend"
+                :class="{ active: $route.path == '/tokens/tokensList/prc20' }">
                 <router-link to="/tokens/tokensList/prc20">{{ $t('menu.erc20Tokens') }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                index="/tokens/tokensTranfer/prc20"
-                @click="toggleMobileMenuOpenend"
+              <el-menu-item index="/tokens/tokensTranfer/prc20" @click="toggleMobileMenuOpenend"
                 :class="{
                   active: $route.path == '/tokens/tokensTranfer/prc20'
-                }"
-              >
-                <router-link to="/tokens/tokensTranfer/prc20">{{ $t('menu.erc20Transfer') }}</router-link>
+                }">
+                <router-link to="/tokens/tokensTranfer/prc20">{{ $t('menu.erc20Transfer')
+                }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                index="/tokens/tokensList/prc721"
-                @click="toggleMobileMenuOpenend"
-                :class="{ active: $route.path == '/tokens/tokensList/prc721' }"
-              >
-                <router-link to="/tokens/tokensList/prc721">{{ $t('menu.erc721Tokens') }}</router-link>
+              <el-menu-item index="/tokens/tokensList/prc721" @click="toggleMobileMenuOpenend"
+                :class="{ active: $route.path == '/tokens/tokensList/prc721' }">
+                <router-link to="/tokens/tokensList/prc721">{{ $t('menu.erc721Tokens')
+                }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                index="/tokens/tokensTranfer/prc721"
-                @click="toggleMobileMenuOpenend"
+              <el-menu-item index="/tokens/tokensTranfer/prc721" @click="toggleMobileMenuOpenend"
                 :class="{
                   active: $route.path == '/tokens/tokensTranfer/prc721'
-                }"
-              >
-                <router-link to="/tokens/tokensTranfer/prc721">{{ $t('menu.erc721Transfer') }}</router-link>
+                }">
+                <router-link to="/tokens/tokensTranfer/prc721">{{ $t('menu.erc721Transfer')
+                }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                index="/tokens/tokensList/prc1155"
-                @click="toggleMobileMenuOpenend"
-                :class="{ active: $route.path == '/tokens/tokensList/prc1155' }"
-              >
-                <router-link to="/tokens/tokensList/prc1155">{{ $t('menu.erc1155Tokens') }}</router-link>
+              <el-menu-item index="/tokens/tokensList/prc1155" @click="toggleMobileMenuOpenend"
+                :class="{ active: $route.path == '/tokens/tokensList/prc1155' }">
+                <router-link to="/tokens/tokensList/prc1155">{{ $t('menu.erc1155Tokens')
+                }}</router-link>
               </el-menu-item>
 
-              <el-menu-item
-                index="/tokens/tokensTranfer/prc1155"
-                @click="toggleMobileMenuOpenend"
+              <el-menu-item index="/tokens/tokensTranfer/prc1155" @click="toggleMobileMenuOpenend"
                 :class="{
                   active: $route.path == '/tokens/tokensTranfer/prc1155'
-                }"
-              >
-                <router-link to="/tokens/tokensTranfer/prc1155">{{ $t('menu.erc1155Transfer') }}</router-link>
+                }">
+                <router-link to="/tokens/tokensTranfer/prc1155">{{ $t('menu.erc1155Transfer')
+                }}</router-link>
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -346,47 +249,32 @@
               <span>{{ $t('menu.more') }}</span>
             </template>
             <el-menu-item-group>
-              <el-menu-item
-                @click="toggleMobileMenuOpenend"
-                index="/proposal"
-                :class="{ active: $route.path == '/proposal' }"
-              >
+              <el-menu-item @click="toggleMobileMenuOpenend" index="/proposal"
+                :class="{ active: $route.path == '/proposal' }">
                 <router-link to="/proposal">{{ $t('menu.proposal') }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                @click="toggleMobileMenuOpenend"
-                index="/governable-parameter"
-                :class="{ active: $route.path == '/governable-parameter' }"
-              >
-                <router-link to="/governable-parameter">{{ $t('more.governableParameter') }}</router-link>
+              <el-menu-item @click="toggleMobileMenuOpenend" index="/governable-parameter"
+                :class="{ active: $route.path == '/governable-parameter' }">
+                <router-link to="/governable-parameter">{{ $t('more.governableParameter')
+                }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                @click="toggleMobileMenuOpenend"
-                index="/foundation-address"
-                :class="{ active: $route.path == '/foundation-address' }"
-              >
+              <el-menu-item @click="toggleMobileMenuOpenend" index="/foundation-address"
+                :class="{ active: $route.path == '/foundation-address' }">
                 <router-link to="/foundation-address">{{ $t('more.foundationAddress') }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                @click="toggleMobileMenuOpenend"
-                index="/add-to-extension"
-                :class="{ active: $route.path == '/add-to-extension' }"
-              >
+              <el-menu-item @click="toggleMobileMenuOpenend" index="/add-to-extension"
+                :class="{ active: $route.path == '/add-to-extension' }">
                 <router-link to="/add-to-extension">{{ $t('more.addToExtension') }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                @click="toggleMobileMenuOpenend"
-                index="/create-validate-node"
-                :class="{ active: $route.path == '/create-validate-node' }"
-              >
-                <router-link to="/create-validate-node">{{ $t('more.createValidateNode') }}</router-link>
+              <el-menu-item @click="toggleMobileMenuOpenend" index="/create-validate-node"
+                :class="{ active: $route.path == '/create-validate-node' }">
+                <router-link to="/create-validate-node">{{ $t('more.createValidateNode')
+                }}</router-link>
               </el-menu-item>
-              <el-menu-item
-                @click="toggleMobileMenuOpenend"
-                index="/remove-validate-node"
-                :class="{ active: $route.path == '/remove-validate-node' }"
-              >
-                <router-link to="/remove-validate-node">{{ $t('more.removeValidateNode') }}</router-link>
+              <el-menu-item @click="toggleMobileMenuOpenend" index="/remove-validate-node"
+                :class="{ active: $route.path == '/remove-validate-node' }">
+                <router-link to="/remove-validate-node">{{ $t('more.removeValidateNode')
+                }}</router-link>
               </el-menu-item>
             </el-menu-item-group>
           </el-submenu>
@@ -402,14 +290,10 @@
           </el-submenu>
         </el-menu>
         <div class="language-section">
-          <div
-            v-for="(item, index) in options"
-            :key="index"
-            :class="{
-              languageItem: true,
-              active: languageObj[language] == item.label
-            }"
-          >
+          <div v-for="(item, index) in options" :key="index" :class="{
+            languageItem: true,
+            active: languageObj[language] == item.label
+          }">
             <span class="language-text" @click="handleCommandLangage(item.value)">
               {{ item.label === '简体中文' ? '中' : 'En' }}
             </span>
@@ -468,7 +352,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['chainId', 'chainHttp', 'hideSearch', 'configData']),
+    ...mapGetters([ 'chainId', 'chainHttp', 'hideSearch', 'configData' ]),
     lang() {
       return this.$i18n.locale.indexOf('zh') !== -1 ? 'zh' : 'en'
     },
@@ -478,9 +362,9 @@ export default {
   },
   watch: {},
   components: {},
-  inject: ['reload'],
+  inject: [ 'reload' ],
   methods: {
-    ...mapActions(['changeChainId', 'updateConfigData']),
+    ...mapActions([ 'changeChainId', 'updateConfigData' ]),
     getConfig() {
       let flag = true
       apiService.more
@@ -540,9 +424,9 @@ export default {
       if (!arr.length) {
         return ''
       }
-      let arr1 = arr[0]
-      console.warn('首次net》》》', arr1['en'])
-      return arr1['en']
+      let arr1 = arr[ 0 ]
+      console.warn('首次net》》》', arr1[ 'en' ])
+      return arr1[ 'en' ]
     },
     handleCommand(command) {
       console.log('网络切换》》》', command)
@@ -550,13 +434,13 @@ export default {
       let arr = this.chainList.filter((item, index) => {
         return item.cid == command
       })
-      store.commit('CHANGE_HTTP', arr[0].http)
-      store.commit('CHANGE_CONTEXT', arr[0].context)
+      store.commit('CHANGE_HTTP', arr[ 0 ].http)
+      store.commit('CHANGE_CONTEXT', arr[ 0 ].context)
       //切换网络之后，将当前网络存在sessionStorage
       sessionStorage.setItem('commandId', command)
-      sessionStorage.setItem('commandHttp', arr[0].http)
-      sessionStorage.setItem('commandContext', arr[0].context)
-      localStorage.setItem('commandContext', arr[0].context)
+      sessionStorage.setItem('commandHttp', arr[ 0 ].http)
+      sessionStorage.setItem('commandContext', arr[ 0 ].context)
+      localStorage.setItem('commandContext', arr[ 0 ].context)
       localStorage.setItem('cid', command)
       this.$router.push({
         path: '/'
@@ -699,9 +583,9 @@ export default {
   //生命周期函数
   created() {
     this.language = this.$i18n.locale.indexOf('zh') !== -1 ? 'zh-cn' : 'en'
-    //this.getConfig()
+    this.getConfig()
   },
-  mounted() {}
+  mounted() { }
 }
 </script>
 <style lang="less" scoped>
@@ -719,45 +603,55 @@ export default {
   align-items: center; //居中对齐
   justify-content: space-between; //两端对齐
   user-select: none;
+
   .menu {
     margin-right: 18px;
+
     .active {
       color: #fff !important;
       font-family: Gilroy-Bold;
     }
   }
+
   .search {
     display: none;
     opacity: 0;
     transition: opacity 0.3s ease;
+
     &.search-hide {
       opacity: 1;
       display: inherit;
     }
   }
 }
+
 .logo {
   display: inline-block;
   // height: 100%;
   width: 225px;
   // overflow: hidden;
   margin-right: 20px;
+
   .logo-right {
     margin-top: 5px;
     margin-left: 42px;
   }
+
   .iconAlaya {
     width: 82px;
     height: 30px;
   }
+
   .icon1 {
     // padding-top: 10px;
     padding-right: 4px;
     float: left;
   }
+
   .icon2 {
     height: 45px;
   }
+
   p {
     font-family: Gilroy-Regular;
     font-size: 12px;
@@ -767,17 +661,21 @@ export default {
     min-width: 84px;
   }
 }
+
 .el-menu-demo {
   display: flex;
+
   li.el-menu-item {
     border: 0px;
   }
 }
+
 .right-most {
   flex-shrink: 0; // 网络切换+中英文不缩小
   // width: 200px;
   display: flex;
   justify-content: flex-end;
+
   div {
     font-family: Gilroy-Medium;
     font-size: 14px;
@@ -785,76 +683,93 @@ export default {
     letter-spacing: 0;
     text-align: right;
     vertical-align: middle;
+
     .el-dropdown-link {
       cursor: pointer;
       vertical-align: middle;
     }
   }
 }
-.right-most > .el-dropdown:first-child {
+
+.right-most>.el-dropdown:first-child {
   margin: 0 25px;
 }
+
 .el-dropdown-menu {
   background: #fff;
   padding: 0 0 0 0;
+
   .el-dropdown-menu__item {
     color: #222;
     background-color: #fff;
     letter-spacing: 0;
     border-radius: 4px;
   }
+
   .el-dropdown-menu__item:hover {
     background: #eaeaea;
     color: #0798de;
   }
+
   .el-dropdown-menu__item:focus {
     background-color: #0f83cd;
   }
+
   :first-child {
     margin: 9px 0 0 0;
   }
 }
+
 .search-header {
   min-width: 355px;
   max-width: 600px;
   flex: 1;
+
   @media only screen and (max-width: 1366px) {
     .el-button {
       padding: 12px 14px;
     }
   }
 }
+
 .el-menu-demo {
   .el-menu-item {
     padding: 0 19px;
   }
 }
+
 @media only screen and (max-width: 1680px) {
   .header-wrap {
     padding: 0 3.2%;
   }
+
   .el-menu-demo {
     .el-menu-item {
       padding: 0 16px;
     }
   }
 }
+
 @media only screen and (max-width: 1366px) {
   .header-wrap {
     padding: 0 0;
+
     .logo {
       width: 130px;
       margin-right: 0;
       flex-shrink: 0;
+
       .icon2 {
         padding-top: 15px;
       }
+
       .text {
         display: none;
       }
     }
   }
 }
+
 .to-help {
   width: 100%;
   display: inline-block;
@@ -868,16 +783,20 @@ export default {
   text-align: right;
   outline: none;
 }
+
 .more-dropdown {
   display: inline;
   color: inherit;
 }
+
 .more-item {
   color: #999999 !important;
 }
+
 .mobile-menu-btn {
   display: none;
 }
+
 .mobileMenuWrapper {
   position: fixed;
   left: 100vw;
@@ -899,9 +818,11 @@ export default {
     background-color: rgba(0, 0, 0, 0.3);
     display: none;
   }
+
   &.opened {
     left: 0;
     right: 0;
+
     .mobile-menu-back {
       display: block;
     }
@@ -913,43 +834,53 @@ export default {
     z-index: 102;
     padding: 12px;
     overflow-y: auto;
+
     .mobile-menu {
       .el-menu-item {
         color: #121f38;
         min-width: auto;
+
         a {
           color: #121f38;
         }
+
         &.active {
           font-weight: 700;
+
           a {
             font-weight: 700;
           }
         }
       }
+
       li {
         padding: 0 !important;
         text-align: center;
       }
     }
+
     .language-section {
       display: flex;
       justify-content: center;
       align-items: center;
+
       .languageItem {
         color: #121f38;
         font-size: 14px;
         line-height: 56px;
+
         .language-text {
           cursor: pointer;
           padding: 8px;
           color: #7d7d7d;
         }
+
         &.active {
           .language-text {
             color: #121f38;
           }
         }
+
         &:last-child {
           .language-divider {
             display: none;
@@ -967,14 +898,17 @@ export default {
     height: auto;
     padding: 30px 0;
     z-index: 9999;
+
     .logo.cursor {
       margin-left: 30px;
     }
+
     .menu {
       .el-menu-demo {
         display: none;
       }
     }
+
     .mobile-search {
       min-width: calc(100% - 80px);
       max-width: unset;
@@ -986,13 +920,16 @@ export default {
         padding: 0 8px !important;
       }
     }
+
     .right-most {
       .el-dropdown {
         display: none;
       }
+
       .mobile-menu-btn {
         display: block;
         margin-right: 30px;
+
         img {
           width: 24px;
           height: 24px;
@@ -1002,20 +939,24 @@ export default {
     }
   }
 }
+
 @media (max-width: 500px) {
   .header-wrap {
     flex-wrap: wrap;
     min-height: 102px;
     height: auto;
     padding: 20px 0;
+
     .logo.cursor {
       margin-left: 20px;
     }
+
     .menu {
       .el-menu-demo {
         display: none;
       }
     }
+
     .mobile-search {
       min-width: calc(100% - 80px);
       max-width: unset;
@@ -1027,13 +968,16 @@ export default {
         padding: 0 8px !important;
       }
     }
+
     .right-most {
       .el-dropdown {
         display: none;
       }
+
       .mobile-menu-btn {
         display: block;
         margin-right: 20px;
+
         img {
           width: 24px;
           height: 24px;
@@ -1048,49 +992,61 @@ export default {
 .search-header .el-input .el-input__inner {
   color: #fff !important;
 }
+
 .search-header .el-button.el-button--primary.is-disabled {
   color: #8e8e8e;
   background: #000;
 }
+
 .menu {
-  .el-menu-demo > .el-menu-item {
+  .el-menu-demo>.el-menu-item {
     background: transparent !important;
+
     &:hover {
       color: #fff !important;
       // background: transparent !important;
     }
   }
 }
+
 .el-menu--horizontal,
-.el-menu--horizontal > ul {
+.el-menu--horizontal>ul {
   border: 0 !important;
 }
+
 .el-menu--popup,
-.el-menu--popup > li {
+.el-menu--popup>li {
   background: #0e1438 !important;
 }
+
 .el-menu--popup {
   min-width: 150px;
   margin: 0 0 0 0;
   padding: 0 0 0 0;
+
   a {
     color: #8d9bb8;
   }
+
   .el-menu-item:hover {
     background: #1f254c !important;
   }
+
   .el-menu-item:active {
     background: #0f83cd !important;
   }
 }
+
 //右边的dropdown
 .el-dropdown-menu {
   padding: 0 0 0 0 !important;
   border: 0px solid #ebeef5 !important;
 }
+
 .el-dropdown-menu__item.is-disabled {
   opacity: 0.25;
 }
+
 .right-most {
   .el-select .el-input .el-input__inner {
     font-family: ArialMT;
@@ -1100,40 +1056,49 @@ export default {
     border: none;
     background: transparent;
   }
+
   .el-select:hover .el-input__inner {
     background: transparent;
     border: none;
     color: #d7dde9;
   }
+
   .el-select .el-input.is-focus .el-input__inner {
     background: transparent;
     border: none;
     color: #d7dde9;
   }
 }
+
 .search .el-button.el-searchs.btn-header {
   &.search-btn-active {
     color: #fff;
     border-left: 1px solid #666;
   }
+
   &:hover {
     color: #0798de;
     background: #000 !important;
     border-left: 1px solid #333;
   }
+
   &:active {
     color: #2d8ebc;
   }
 }
+
 .search-header.search-active {
   border: 1px solid #666;
+
   .search-btn-active:hover {
     border-left: 1px solid #666 !important;
   }
 }
+
 .dividing-line {
   position: relative;
   padding: 4px;
+
   &::after {
     content: '';
     position: absolute;
@@ -1144,6 +1109,7 @@ export default {
     background: #e4e7ed;
   }
 }
+
 // @media screen and (max-width: 1680px) {
 //     .search {
 //         .el-input{
@@ -1174,15 +1140,18 @@ export default {
   .mobile-menu-content {
     .mobile-menu {
       border-right: none !important;
+
       li {
         .el-submenu__title {
           padding: 0 !important;
+
           .el-submenu__icon-arrow {
             color: #121f38;
             font-size: 16px;
           }
         }
       }
+
       .el-submenu {
         .el-menu {
           .el-menu-item-group {

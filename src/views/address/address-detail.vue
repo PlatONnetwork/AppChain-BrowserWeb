@@ -48,13 +48,13 @@
                 }}</label>
                 <div style="text-align: right">
                   <span class="money"
-                    >{{ detailInfo.balance | formatMoney }}&nbsp;HSK</span
+                    >{{ detailInfo.balance | formatMoney }}&nbsp;</span
                   >
                   <div>
                     <span class="restricted" v-if="detailInfo.isRestricting"
                       >{{
                         detailInfo.restrictingBalance | formatMoney
-                      }}&nbsp;HSK (<a
+                      }}&nbsp; (<a
                         class="blue cursor"
                         @click="goRestricte"
                         >{{ $t('contract.restricted') }}</a
@@ -63,7 +63,7 @@
                     <span class="restricted" style="padding-left: 12px;" v-if="detailInfo.lockBalance > 0"
                       >{{
                         detailInfo.lockBalance | formatMoney
-                      }}&nbsp;HSK (<a
+                      }}&nbsp; (<a
                         class="blue cursor"
                         @click="goDelegate"
                         >{{ $t('contract.frozenDelegate') }}</a
@@ -120,7 +120,7 @@
                 }}</label>
                 <div class="money">
                   <!-- TODO! 先用质押的字段 需要合并质押和委托中 -->
-                  {{ detailInfo.stakingValue | formatMoney }}&nbsp;HSK
+                  {{ detailInfo.stakingValue | formatMoney }}&nbsp;
                 </div>
               </li>
               <li>
@@ -128,7 +128,7 @@
                   $t('contract.unclaimedReward')
                 }}</label>
                 <div class="money">
-                  {{ detailInfo.delegateClaim | formatMoney }}&nbsp;HSK
+                  {{ detailInfo.delegateClaim | formatMoney }}&nbsp;
                 </div>
               </li>
               <li>
@@ -136,7 +136,7 @@
                   $t('contract.invalidDelegations')
                 }}</label>
                 <div class="money">
-                  {{ detailInfo.delegateReleased | formatMoney }}&nbsp;HSK
+                  {{ detailInfo.delegateReleased | formatMoney }}&nbsp;
                 </div>
               </li>
               <li v-if="configData.switches.includes('delegate')">
@@ -150,7 +150,7 @@
                   </el-tooltip>
                 </label>
                 <div class="money">
-                  {{ detailInfo.unLockBalance | formatMoney }}&nbsp;HSK
+                  {{ detailInfo.unLockBalance | formatMoney }}&nbsp;
                 </div>
               </li>
             </ul>

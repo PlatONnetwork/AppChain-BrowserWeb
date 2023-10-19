@@ -126,7 +126,7 @@
         <!-- 数额(Value) -->
         <el-table-column :label="$t('tradeAbout.value')" show-overflow-tooltip>
           <template slot-scope="scope">
-            <span>{{ scope.row.value | formatMoney }} HSK</span>
+            <span>{{ scope.row.value | formatMoney }} </span>
           </template>
         </el-table-column>
 
@@ -134,7 +134,7 @@
         <el-table-column show-overflow-tooltip width="120">
           <template slot="header">
             {{ $t('tradeAbout.fee') }}
-            <span style="color: #999999">(HSK)</span>
+            <span style="color: #999999">()</span>
           </template>
           <template slot-scope="scope">
             <span>{{ scope.row.actualTxCost | formatMoney }}</span>

@@ -746,12 +746,12 @@ export default {
   },
   fund: {
     title: '基金会地址',
-    totalBalance: '自由金总余额 (HSK)',
-    totalLocked: '锁仓金总余额 (HSK)',
+    totalBalance: '自由金总余额 ()',
+    totalLocked: '锁仓金总余额 ()',
     pageTotal: `总计 <b class="black">{0}</b> 个地址`,
     tAddress: '地址',
-    tBalance: '自由金余额 (HSK)',
-    tLockedBalance: '锁仓金余额 (HSK)'
+    tBalance: '自由金余额 ()',
+    tLockedBalance: '锁仓金余额 ()'
   },
   ...zhLocale
 }

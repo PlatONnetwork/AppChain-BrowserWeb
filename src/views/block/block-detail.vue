@@ -115,7 +115,7 @@
         </Item>
         <Item
           :label="$t('blockAbout.blockReward')"
-          :prop="detailInfo.blockReward + ' HSK'"
+          :prop="detailInfo.blockReward + ' '"
         ></Item>
         <Item
           class="extra-data"

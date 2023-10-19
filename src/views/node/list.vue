@@ -186,7 +186,7 @@
           >
             <template slot-scope="scope">
               <span
-                >{{ scope.row.statDelegateReduction | formatMoney }} HSK</span
+                >{{ scope.row.statDelegateReduction | formatMoney }} </span
               >
             </template>
           </el-table-column>
@@ -349,7 +349,7 @@
           </el-table-column>
           <el-table-column :label="$t('deleget.delegationsN')" min-width="120">
             <template slot-scope="scope">
-              <span> {{ scope.row.delegateValue | formatMoney }} HSK </span>
+              <span> {{ scope.row.delegateValue | formatMoney }}  </span>
             </template>
           </el-table-column>
           <el-table-column
@@ -514,12 +514,12 @@
           </el-table-column>
           <el-table-column :label="$t('nodeInfo.totalStakePower')" min-width="165">
             <template slot-scope="scope">
-              <span>{{ scope.row.totalValue | formatMoney }} HSK</span>
+              <span>{{ scope.row.totalValue | formatMoney }} </span>
             </template>
           </el-table-column>
           <el-table-column :label="$t('deleget.delegationsN')"  min-width="165">
             <template slot-scope="scope">
-              <span> {{ scope.row.delegateValue | formatMoney }} HSK</span>
+              <span> {{ scope.row.delegateValue | formatMoney }} </span>
             </template>
           </el-table-column>
           <!-- 委托奖励比例 -->

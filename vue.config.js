@@ -10,8 +10,8 @@ module.exports = {
     proxy: {
       '/apis': {
         // target: 'http://192.168.120.150:40000',
-        // target: "https://devnet2scan.platon.network",
-        target: 'http://192.168.9.222:32868',
+        target: "https://scan.platon.network/",
+        // target: 'http://192.168.9.222:32868',
         secure: false,
         ws: true,
         changeOrigin: true,

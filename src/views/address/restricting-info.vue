@@ -22,13 +22,13 @@
             <h3>{{$t('contract.lockOverview')}}</h3>
             <List class="common-info">           
                 <Item :label="$t('contract.restrictedBalance')">
-                    <p>{{detailInfo.restrictingBalance | formatMoney}}&nbsp;HSK</p>
+                    <p>{{detailInfo.restrictingBalance | formatMoney}}&nbsp;</p>
                 </Item>
                 <Item :label="$t('contract.forDelegations')">
-                    <p>{{detailInfo.stakingValue | formatMoney}}&nbsp;HSK</p>
+                    <p>{{detailInfo.stakingValue | formatMoney}}&nbsp;</p>
                 </Item>
                 <Item :label="$t('contract.debt')">
-                    <p>{{detailInfo.underReleaseValue | formatMoney}}&nbsp;HSK</p>
+                    <p>{{detailInfo.underReleaseValue | formatMoney}}&nbsp;</p>
                 </Item>
             </List>
         </div>
@@ -37,7 +37,7 @@
             <h3>{{$t('tradeAbout.restrictedPlan')}}</h3>
             <div class="restricted-total">
                 {{$t('tradeAbout.totalRestricted')}}
-                <span>{{detailInfo.totalValue | formatMoney}}&nbsp;HSK</span>
+                <span>{{detailInfo.totalValue | formatMoney}}&nbsp;</span>
             </div>
             <el-table :data="detailInfo.rpPlans" style="width: 100%" key='firstTable' size="mini">
                 <!-- <el-table-column :label="$t('contract.epoch')">
@@ -57,7 +57,7 @@
                 </el-table-column>
                 <el-table-column :label="$t('contract.unlocksNumber')" width="240">
                     <template slot-scope="scope">
-                        <span>{{scope.row.amount | formatMoney}}HSK</span>
+                        <span>{{scope.row.amount | formatMoney}}</span>
                     </template>
                 </el-table-column>
             </el-table>
