@@ -139,7 +139,7 @@
                   {{ detailInfo.delegateReleased | formatMoney }}&nbsp;
                 </div>
               </li>
-              <li v-if="configData.switches.includes('delegate')">
+              <!-- <li v-if="configData.switches.includes('delegate')">
                 <label class="Gilroy-Medium">
                   {{ $t('contract.unclaimedDelegate') }}
                   <el-tooltip class="item" placement="bottom">
@@ -152,7 +152,7 @@
                 <div class="money">
                   {{ detailInfo.unLockBalance | formatMoney }}&nbsp;
                 </div>
-              </li>
+              </li> -->
             </ul>
           </div>
         </el-col>

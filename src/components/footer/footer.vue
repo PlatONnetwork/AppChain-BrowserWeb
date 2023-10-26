@@ -11,7 +11,7 @@
       </div>
       <div class="foot-line"></div>
     </div> -->
-    <div class="foot-index" v-if="path == '/' && configData.social">
+    <div class="foot-index" v-if="path == '/'">
       <!-- <img class="foot-logo" src="logoPrevURL + configData.logo" alt="" /> -->
       <img class="foot-logo" src="@/assets/images/hashChainLogo.svg" alt="" />
       <p>
@@ -82,7 +82,7 @@
         ></a>
       </div> -->
     </div>
-    <div class="foot-no-index foot-index" v-if="path != '/' && configData.social">
+    <div class="foot-no-index foot-index" v-if="path != '/'">
       <div class="foot-left">
         <img src="@/assets/images/hashScanLogo.svg" style="width: 82px; height: 30px" alt=""
           class="foot-logo" />
