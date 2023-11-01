@@ -84,7 +84,7 @@
     </div>
     <div class="foot-no-index foot-index" v-if="path != '/'">
       <div class="foot-left">
-        <img src="@/assets/images/hashScanLogo.svg" style="width: 82px; height: 30px" alt=""
+        <img src="@/assets/images/hashChainLogo.svg" style="width: 82px; height: 30px" alt=""
           class="foot-logo" />
         <p>
           {{

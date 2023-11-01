@@ -102,8 +102,8 @@
               }}</el-dropdown-item>
               <el-dropdown-item command="/foundation-address">{{ $t('more.foundationAddress')
               }}</el-dropdown-item>
-              <el-dropdown-item command="/add-to-extension">{{ $t('more.addToExtension')
-              }}</el-dropdown-item>
+              <!-- <el-dropdown-item command="/add-to-extension">{{ $t('more.addToExtension')
+              }}</el-dropdown-item> -->
               <!-- <el-dropdown-item command="/create-validate-node">{{ $t('more.createValidateNode')
               }}</el-dropdown-item>
               <el-dropdown-item command="/remove-validate-node">{{ $t('more.removeValidateNode')
@@ -262,10 +262,10 @@
                 :class="{ active: $route.path == '/foundation-address' }">
                 <router-link to="/foundation-address">{{ $t('more.foundationAddress') }}</router-link>
               </el-menu-item>
-              <el-menu-item @click="toggleMobileMenuOpenend" index="/add-to-extension"
+              <!-- <el-menu-item @click="toggleMobileMenuOpenend" index="/add-to-extension"
                 :class="{ active: $route.path == '/add-to-extension' }">
                 <router-link to="/add-to-extension">{{ $t('more.addToExtension') }}</router-link>
-              </el-menu-item>
+              </el-menu-item> -->
               <el-menu-item @click="toggleMobileMenuOpenend" index="/create-validate-node"
                 :class="{ active: $route.path == '/create-validate-node' }">
                 <router-link to="/create-validate-node">{{ $t('more.createValidateNode')

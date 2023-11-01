@@ -367,7 +367,7 @@
                   class="token-pic"
                   :src="
                     item.innerImage ||
-                    require('@/assets/images/hashScanLogo.svg')
+                    require('@/assets/images/hashChainLogo.svg')
                   "
                 />
               </li>
@@ -420,7 +420,7 @@
                   class="token-pic"
                   :src="
                     item.image ||
-                    require('@/assets/images/hashScanLogo.svg')
+                    require('@/assets/images/hashChainLogo.svg')
                   "
                 />
               </li>

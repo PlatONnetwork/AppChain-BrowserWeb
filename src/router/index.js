@@ -10,7 +10,11 @@ import { proposalList, proposalDetail } from './map/proposal.js'
 import { tokensList, tokensDetail } from './map/tokens.js'
 import DownLoad from './map/download'
 import Redirect from './map/Redirect'
-import { governableParameter, foundationAddress, addToExtension, createValidateNode, removeValidateNode } from './map/more'
+import {
+  governableParameter, foundationAddress,
+  // addToExtension,
+  createValidateNode, removeValidateNode
+} from './map/more'
 Vue.use(Router)
 export default new Router({
   mode: 'history',
@@ -34,7 +38,7 @@ export default new Router({
     proposalDetail,
     governableParameter,
     foundationAddress,
-    addToExtension,
+    // addToExtension,
     createValidateNode,
     removeValidateNode,
     tokensList,

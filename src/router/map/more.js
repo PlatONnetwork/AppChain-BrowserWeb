@@ -16,11 +16,11 @@ export const foundationAddress = {
   name: 'foundationAddress'
 }
 
-export const addToExtension = {
-  path: '/add-to-extension',
-  component: AddToExtension,
-  name: 'addToExtension'
-}
+// export const addToExtension = {
+//   path: '/add-to-extension',
+//   component: AddToExtension,
+//   name: 'addToExtension'
+// }
 
 export const createValidateNode = {
   path: '/create-validate-node',
